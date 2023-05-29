@@ -4,10 +4,10 @@ const app: Application = express()
 
 // Middlewares
 app.use(cors())
-      app.use(express.json())
+app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/', (req: Request, res: any) => {
+app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!')
 })
 
