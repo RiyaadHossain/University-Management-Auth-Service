@@ -12,7 +12,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "lint-staged": {
-    "src/**/*.ts": "yarn lint-prettier"
+    "src/**/*.ts": "yarn lint-pritter"
   },
   "repository": "https://github.com/RiyaadHossain/University-Management.git",
   "keywords": [
