@@ -1,0 +1,16 @@
+{
+  "name": "university-management",
+  "version": "1.0.0",
+  "description": "A university management related service",
+  "main": "src/intext.ts",
+  "repository": "https://github.com/RiyaadHossain/University-Management.git",
+  "author": "Riyad Hossain",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.2.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.4"
+  }
+}
