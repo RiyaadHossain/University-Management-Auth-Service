@@ -5,4 +5,5 @@ dotenv.config({ path: path.join(process.cwd(), '.env') })
 export default {
   PORT: process.env.PORT,
   MONGODB_URL: process.env.MONGODB_URL,
+  UNIVERSITY_USER_PASS: process.env.UNIVERSITY_USER_PASS,
 }
