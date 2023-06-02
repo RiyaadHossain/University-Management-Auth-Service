@@ -1,1 +1,1 @@
-# University-Management
+# University Management Auth Service

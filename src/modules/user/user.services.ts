@@ -6,7 +6,6 @@ import { generateUserId } from './user.utils'
 export const createUserService = async (user: IUser): Promise<IUser | null> => {
   // Auto Generated Id
   const id = await generateUserId()
-  console.log(id)
   user.id = id
 
   // Default Password
