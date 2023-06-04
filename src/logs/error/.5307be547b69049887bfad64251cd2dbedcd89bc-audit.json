@@ -1,15 +1,15 @@
 {
-    "keep": {
-        "days": true,
-        "amount": 14
-    },
-    "auditLog": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\error\\.5307be547b69049887bfad64251cd2dbedcd89bc-audit.json",
-    "files": [
-        {
-            "date": 1685677109085,
-            "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\error\\error-2023-06-02-09.log",
-            "hash": "5d60273df8b4ba6200bacf8a34602f3bcda4c0463c8101dd72ba6468927110cf"
-        }
-    ],
-    "hashType": "sha256"
+  "keep": {
+    "days": true,
+    "amount": 14
+  },
+  "auditLog": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\error\\.5307be547b69049887bfad64251cd2dbedcd89bc-audit.json",
+  "files": [
+    {
+      "date": 1685677109085,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\error\\error-2023-06-02-09.log",
+      "hash": "5d60273df8b4ba6200bacf8a34602f3bcda4c0463c8101dd72ba6468927110cf"
+    }
+  ],
+  "hashType": "sha256"
 }
