@@ -22,7 +22,7 @@ const server = app.listen(config.PORT, () => {
 
 // Unhandled Rejection: Gracefully off the server
 process.on('unhandledRejection', error => {
-  logger.error('Unhandled Reject is closing the server', error)
+  logger.error(`Unhandled Reject is closing the server: ${error}`)
 
   if (server) {
     server.close(() => {
