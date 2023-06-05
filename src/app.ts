@@ -4,7 +4,7 @@ import cors from 'cors'
 const app: Application = express()
 
 // Routes
-import userRoutes from './modules/user/user.route'
+import { UserRoute } from './modules/user/user.route'
 
 // Middlewares
 app.use(cors())
@@ -12,10 +12,11 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // Application Route
-app.use('/api/v1/users/', userRoutes)
+app.use('/api/v1/users/', UserRoute)
 
 // Health Check
 app.get('/', (req: Request, res: Response) => {
+  // Promise.reject((new APIError(400, "this is error")))
   res.send('Hello World from University Management!')
 })
 

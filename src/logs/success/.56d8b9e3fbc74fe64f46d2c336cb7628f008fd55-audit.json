@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 10
+    },
+    "auditLog": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\.56d8b9e3fbc74fe64f46d2c336cb7628f008fd55-audit.json",
+    "files": [
+        {
+            "date": 1685929118160,
+            "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-05-07.log",
+            "hash": "60b72af5a90a461051d5839e6bac63de49c2c1cfa880f9e6fae49730936e74a2"
+        },
+        {
+            "date": 1685930579894,
+            "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-05-08.log",
+            "hash": "2972b897745ccc20463cb182f3e2e5a14e188d2e4515efc0164b7fe1c964c3d6"
+        }
+    ],
+    "hashType": "sha256"
+}
