@@ -1,25 +1,25 @@
 {
-    "keep": {
-        "days": true,
-        "amount": 10
+  "keep": {
+    "days": true,
+    "amount": 10
+  },
+  "auditLog": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\error\\.88d256501dbb38254d00e1a61da61c057c40277f-audit.json",
+  "files": [
+    {
+      "date": 1685929118171,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\error\\error-2023-06-05-07.log",
+      "hash": "78283e065176734beef18ebb055a0a54e235e8ddb52401bb1bf47a71c86b7b30"
     },
-    "auditLog": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\error\\.88d256501dbb38254d00e1a61da61c057c40277f-audit.json",
-    "files": [
-        {
-            "date": 1685929118171,
-            "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\error\\error-2023-06-05-07.log",
-            "hash": "78283e065176734beef18ebb055a0a54e235e8ddb52401bb1bf47a71c86b7b30"
-        },
-        {
-            "date": 1685930579903,
-            "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\error\\error-2023-06-05-08.log",
-            "hash": "044b95bbc7d57dc5e436b9cc5dc3633b58a79a02b1782729dcfaa6f51e224779"
-        },
-        {
-            "date": 1685934085499,
-            "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\error\\error-2023-06-05-09.log",
-            "hash": "6733093cecd3eecbb1cbe42856337e5856c0050aab1f26583b2b444903683eb3"
-        }
-    ],
-    "hashType": "sha256"
+    {
+      "date": 1685930579903,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\error\\error-2023-06-05-08.log",
+      "hash": "044b95bbc7d57dc5e436b9cc5dc3633b58a79a02b1782729dcfaa6f51e224779"
+    },
+    {
+      "date": 1685934085499,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\error\\error-2023-06-05-09.log",
+      "hash": "6733093cecd3eecbb1cbe42856337e5856c0050aab1f26583b2b444903683eb3"
+    }
+  ],
+  "hashType": "sha256"
 }
