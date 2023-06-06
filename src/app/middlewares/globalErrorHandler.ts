@@ -1,11 +1,11 @@
-import { ErrorRequestHandler } from 'express'
-import { IGenericErrorMessage } from '../../interfaces/error'
-import config from '../../config'
-import { handleValidationError } from '../../errors/handleValidationError'
-import APIError from '../../errors/APIErrors'
 import { Error } from 'mongoose'
 import { ZodError } from 'zod'
-import { handleZodError } from '../../errors/handleZodError'
+import config from '../../config'
+import APIError from '../../errors/APIErrors'
+import { ErrorRequestHandler } from 'express'
+import handleZodError from '../../errors/handleZodError'
+import { IGenericErrorMessage } from '../../interfaces/error'
+import { handleValidationError } from '../../errors/handleValidationError'
 
 const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   let statusCode = 500

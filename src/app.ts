@@ -5,6 +5,7 @@ const app: Application = express()
 
 // Routes
 import { UserRoute } from './modules/user/user.route'
+import { AcademicSemesterRoute } from './modules/academicSemester/academicSemester.route'
 
 // Middlewares
 app.use(cors())
@@ -13,6 +14,7 @@ app.use(express.urlencoded({ extended: true }))
 
 // Application Route
 app.use('/api/v1/users/', UserRoute)
+app.use('/api/v1/academic-semesters/', AcademicSemesterRoute)
 
 // Health Check
 app.get('/', (req: Request, res: Response) => {

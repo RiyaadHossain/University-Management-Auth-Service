@@ -2,16 +2,16 @@ import { NextFunction, Request, Response } from 'express'
 import { AnyZodObject } from 'zod'
 
 export const validateRequest =
-  (shema: AnyZodObject) =>
-  async (req: Request, res: Response, next: NextFunction) => {
+  (schema: AnyZodObject) =>
+  async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    console.log(req.body)
     try {
-      await shema.parseAsync({
+      await schema.parseAsync({
         body: req.body,
-        params: req.params,
         query: req.query,
-        cookier: req.cookies,
+        params: req.params,
+        cookies: req.cookies,
       })
-
       next()
     } catch (error) {
       next(error)
