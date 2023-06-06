@@ -1,3 +1,4 @@
+import httpStatus from 'http-status-codes'
 import { Schema, model } from 'mongoose'
 import {
   IAcademicSemester,
@@ -8,6 +9,7 @@ import {
   academicSemesterMonths,
   academicSemesterTitles,
 } from './academicSemester.constant'
+import APIError from '../../errors/APIErrors'
 
 const academicSemesterSchema = new Schema<IAcademicSemester>(
   {
@@ -38,6 +40,23 @@ const academicSemesterSchema = new Schema<IAcademicSemester>(
   },
   { timestamps: true }
 )
+
+// Title + Year validation
+academicSemesterSchema.pre('save', async function (next) {
+  const isExist = await AcademicSemester.findOne({
+    title: this.title,
+    year: this.year,
+  })
+
+  if (isExist) {
+    throw new APIError(
+      httpStatus.CONFLICT,
+      'Academic Semester is already exist!'
+    )
+  }
+
+  next()
+})
 
 const AcademicSemester = model<IAcademicSemester, AcademicSemesterModel>(
   'AcademicSemester',
