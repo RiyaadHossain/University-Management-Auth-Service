@@ -1,5 +1,5 @@
 import { UserService } from './user.services'
-import catchAsync from '../../catchAsync'
+import catchAsync from '../../shared/catchAsync'
 import { NextFunction, Request, Response } from 'express'
 import sendResponse from '../../shared/sendResponse'
 import httpStatus from 'http-status-codes'

@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express'
 import { AcademicSemesterService } from './academicSemester.services'
-import catchAsync from '../../catchAsync'
+import catchAsync from '../../shared/catchAsync'
 import sendResponse from '../../shared/sendResponse'
 import httpStatus from 'http-status-codes'
 

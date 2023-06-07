@@ -1,11 +1,5 @@
 import { Response } from 'express'
-
-type IAPIResponse<T> = {
-  statusCode: number
-  success: boolean
-  message?: string | null
-  data?: T | null
-}
+import { IAPIResponse } from '../interfaces/common'
 
 const sendResponse = <T>(res: Response, resData: IAPIResponse<T>): void => {
   const resBody: Omit<IAPIResponse<T>, 'statusCode'> = {
