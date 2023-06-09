@@ -5,6 +5,8 @@ import { IAcademicSemester } from './academicSemester.interface'
 import AcademicSemester from './academicSemester.model'
 import { IPaginationType } from '../../interfaces/pagination'
 import { IServiceReturnType } from '../../interfaces/common'
+import { calculatePagination } from '../../helper/paginationHelper'
+import { SortOrder } from 'mongoose'
 
 const createAcademicSemester = async (
   semesterData: IAcademicSemester
@@ -22,10 +24,14 @@ const createAcademicSemester = async (
 const getAllSemester = async (
   paginationOptions: IPaginationType
 ): Promise<IServiceReturnType<IAcademicSemester[]>> => {
-  const { page = 1, limit = 10 /* sortBy, sortOrder */ } = paginationOptions
-  const skip = (page - 1) * limit
+  const { page, limit, skip, sortBy, sortOrder } =
+    calculatePagination(paginationOptions)
+
+  const sortCondition: { [key: string]: SortOrder } = {}
+  sortCondition[sortBy] = sortOrder
+
   const semseterData = await AcademicSemester.find()
-    .sort()
+    .sort(sortCondition)
     .skip(skip)
     .limit(limit)
 
