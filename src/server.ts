@@ -13,7 +13,7 @@ process.on('uncaughtException', error => {
 mongoose
   .connect(config.MONGODB_URL as string)
   .then(() => logger.info('Database connceted successfully ✅'))
-  .catch(err => errorLogger.error(err))
+  .catch(err => errorLogger.error(`Unable to connect MongoDB ❌ ${err}`))
 
 // Listen to Server
 const server = app.listen(config.PORT, () => {
@@ -22,7 +22,7 @@ const server = app.listen(config.PORT, () => {
 
 // Unhandled Rejection: Gracefully off the server
 process.on('unhandledRejection', error => {
-  logger.error(`Unhandled Reject is closing the server: ${error}`)
+  errorLogger.error(`Unhandled Reject is closing the server ❌ ${error}`)
 
   if (server) {
     server.close(() => {
@@ -35,6 +35,6 @@ process.on('unhandledRejection', error => {
 
 // SIGTERM
 process.on('SIGTERM', () => {
-  logger.info('Sigterm is triggered')
+  logger.info('Sigterm is triggered ⚒️')
   if (server) server.close()
 })
