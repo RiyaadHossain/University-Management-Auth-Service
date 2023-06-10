@@ -8,9 +8,9 @@ import { filterFields, paginationFields } from './academicSemester.constant'
 import { IAcademicSemester } from './academicSemester.interface'
 
 const createacSemester: RequestHandler = catchAsync(async (req, res, next) => {
-  const payload = req.body
+  const semesterData = req.body
 
-  const result = await AcademicSemesterService.createAcademicSemester(payload)
+  const result = await AcademicSemesterService.createSemester(semesterData)
 
   sendResponse<IAcademicSemester>(res, {
     statusCode: httpStatus.OK,
@@ -57,9 +57,12 @@ const getSemester: RequestHandler = catchAsync(async (req, res, next) => {
 
 const updateSemeter: RequestHandler = catchAsync(async (req, res, next) => {
   const id = req.params.id
-  const payload = req.body
+  const updatedSemesterData = req.body
 
-  const result = await AcademicSemesterService.updateSemester(id, payload)
+  const result = await AcademicSemesterService.updateSemester(
+    id,
+    updatedSemesterData
+  )
 
   sendResponse<IAcademicSemester>(res, {
     statusCode: httpStatus.OK,

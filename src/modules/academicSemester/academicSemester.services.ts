@@ -14,15 +14,15 @@ import {
   IFiltersOptions,
 } from './academicSemester.interface'
 
-const createAcademicSemester = async (
-  semesterData: IAcademicSemester
+const createSemester = async (
+  payload: IAcademicSemester
 ): Promise<IAcademicSemester> => {
   // Semester code validation
-  if (academicSemesterTitleCodeMap[semesterData.title] !== semesterData.code) {
+  if (academicSemesterTitleCodeMap[payload.title] !== payload.code) {
     throw new APIError(httpStatus.BAD_REQUEST, 'Invalid Semester code!')
   }
 
-  const createdSemeter = await AcademicSemester.create(semesterData)
+  const createdSemeter = await AcademicSemester.create(payload)
 
   return createdSemeter
 }
@@ -85,20 +85,20 @@ const getSemester = async (id: string): Promise<IAcademicSemester | null> => {
 
 const updateSemester = async (
   id: string,
-  semesterData: Partial<IAcademicSemester>
+  payload: Partial<IAcademicSemester>
 ): Promise<IAcademicSemester | null> => {
   // Semester code validation
   if (
-    semesterData.title &&
-    semesterData.code &&
-    academicSemesterTitleCodeMap[semesterData.title] !== semesterData.code
+    payload.title &&
+    payload.code &&
+    academicSemesterTitleCodeMap[payload.title] !== payload.code
   ) {
     throw new APIError(httpStatus.BAD_REQUEST, 'Invalid Semester code!')
   }
 
   const updatedSemester = await AcademicSemester.findOneAndUpdate(
     { _id: id },
-    semesterData,
+    payload,
     { new: true }
   )
 
@@ -106,7 +106,7 @@ const updateSemester = async (
 }
 
 export const AcademicSemesterService = {
-  createAcademicSemester,
+  createSemester,
   getAllSemester,
   getSemester,
   updateSemester,

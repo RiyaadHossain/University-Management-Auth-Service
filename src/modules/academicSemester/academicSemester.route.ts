@@ -9,6 +9,7 @@ router.post(
   validateRequest(AcademicSemesterValidation.createAcademicSemesterZodSchema),
   AcademicSemesterController.createacSemester
 )
+
 router.get('/', AcademicSemesterController.getAllSemesters)
 
 router.get('/:id', AcademicSemesterController.getSemester)
