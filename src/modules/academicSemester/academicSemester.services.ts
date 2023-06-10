@@ -56,7 +56,7 @@ const getAllSemester = async (
     })
   }
 
-  const semseterData = await AcademicSemester.find({ $and: andConditions })
+  const semsetersData = await AcademicSemester.find({ $and: andConditions })
     .sort(sortCondition)
     .skip(skip)
     .limit(limit)
@@ -69,11 +69,17 @@ const getAllSemester = async (
       limit,
       totalDoc,
     },
-    data: semseterData,
+    data: semsetersData,
   }
+}
+
+const getSemester = async (id: string): Promise<IAcademicSemester | null> => {
+  const semseterData = await AcademicSemester.findById(id)
+  return semseterData
 }
 
 export const AcademicSemesterService = {
   createAcademicSemester,
   getAllSemester,
+  getSemester,
 }
