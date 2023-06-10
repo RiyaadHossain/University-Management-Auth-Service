@@ -7,24 +7,20 @@ import { AcademicSemesterService } from './academicSemester.services'
 import { filterFields, paginationFields } from './academicSemester.constant'
 import { IAcademicSemester } from './academicSemester.interface'
 
-const createacAdemicSemester: RequestHandler = catchAsync(
-  async (req, res, next) => {
-    const academicSemester = req.body
+const createacSemester: RequestHandler = catchAsync(async (req, res, next) => {
+  const payload = req.body
 
-    const result = await AcademicSemesterService.createAcademicSemester(
-      academicSemester
-    )
+  const result = await AcademicSemesterService.createAcademicSemester(payload)
 
-    sendResponse<IAcademicSemester>(res, {
-      statusCode: httpStatus.OK,
-      success: true,
-      message: 'Academic Semester created successfully!',
-      data: result,
-    })
+  sendResponse<IAcademicSemester>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Academic Semester created successfully!',
+    data: result,
+  })
 
-    next()
-  }
-)
+  next()
+})
 
 const getAllSemesters: RequestHandler = catchAsync(async (req, res, next) => {
   const paginationOptions = pick(req.query, paginationFields)
@@ -59,8 +55,25 @@ const getSemester: RequestHandler = catchAsync(async (req, res, next) => {
   next()
 })
 
+const updateSemeter: RequestHandler = catchAsync(async (req, res, next) => {
+  const id = req.params.id
+  const payload = req.body
+
+  const result = await AcademicSemesterService.updateSemester(id, payload)
+
+  sendResponse<IAcademicSemester>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Academic Semester updated successfully!',
+    data: result,
+  })
+
+  next()
+})
+
 export const AcademicSemesterController = {
-  createacAdemicSemester,
+  createacSemester,
   getAllSemesters,
   getSemester,
+  updateSemeter,
 }
