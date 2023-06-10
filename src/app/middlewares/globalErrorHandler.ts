@@ -5,7 +5,8 @@ import APIError from '../../errors/APIErrors'
 import { ErrorRequestHandler } from 'express'
 import handleZodError from '../../errors/handleZodError'
 import { IGenericErrorMessage } from '../../interfaces/error'
-import { handleValidationError } from '../../errors/handleValidationError'
+import handleValidationError from '../../errors/handleValidationError'
+import handleCastError from '../../errors/handleCastError'
 
 const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   let statusCode = 500
@@ -15,6 +16,11 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
 
   if (error.name === 'ValidationError') {
     const simplifiedError = handleValidationError(error)
+    statusCode = simplifiedError.statusCode
+    message = simplifiedError.message
+    errorMessages = simplifiedError.errorMessages
+  } else if (error.name === 'CastError') {
+    const simplifiedError = handleCastError(error)
     statusCode = simplifiedError.statusCode
     message = simplifiedError.message
     errorMessages = simplifiedError.errorMessages

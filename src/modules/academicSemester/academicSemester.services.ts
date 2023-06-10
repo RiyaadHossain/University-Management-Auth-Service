@@ -31,12 +31,15 @@ const getAllSemester = async (
   filtersOptions: IFiltersOptions,
   paginationOptions: IPaginationType
 ): Promise<IServiceReturnType<IAcademicSemester[]>> => {
+  // Pagination Options
   const { page, limit, skip, sortBy, sortOrder } =
     calculatePagination(paginationOptions)
 
+  // Sort condition
   const sortCondition: { [key: string]: SortOrder } = {}
   sortCondition[sortBy] = sortOrder
 
+  // Filter Options
   const { searchTerm, ...filtersData } = filtersOptions
 
   const andConditions = []
@@ -56,7 +59,9 @@ const getAllSemester = async (
     })
   }
 
-  const semsetersData = await AcademicSemester.find({ $and: andConditions })
+  const whereCondition = Object.keys(andConditions).length ? andConditions : {}
+
+  const semsetersData = await AcademicSemester.find(whereCondition)
     .sort(sortCondition)
     .skip(skip)
     .limit(limit)
