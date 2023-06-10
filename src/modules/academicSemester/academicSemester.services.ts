@@ -1,12 +1,18 @@
+import { SortOrder } from 'mongoose'
 import httpStatus from 'http-status-codes'
 import APIError from '../../errors/APIErrors'
-import { academicSemesterTitleCodeMap } from './academicSemester.constant'
-import { IAcademicSemester } from './academicSemester.interface'
 import AcademicSemester from './academicSemester.model'
-import { IPaginationType } from '../../interfaces/pagination'
 import { IServiceReturnType } from '../../interfaces/common'
+import { IPaginationType } from '../../interfaces/pagination'
 import { calculatePagination } from '../../helper/paginationHelper'
-import { SortOrder } from 'mongoose'
+import {
+  academicSemesterTitleCodeMap,
+  academicSemesterSearchableFields,
+} from './academicSemester.constant'
+import {
+  IAcademicSemester,
+  IFiltersOptions,
+} from './academicSemester.interface'
 
 const createAcademicSemester = async (
   semesterData: IAcademicSemester
@@ -22,6 +28,7 @@ const createAcademicSemester = async (
 }
 
 const getAllSemester = async (
+  filtersOptions: IFiltersOptions,
   paginationOptions: IPaginationType
 ): Promise<IServiceReturnType<IAcademicSemester[]>> => {
   const { page, limit, skip, sortBy, sortOrder } =
@@ -30,7 +37,26 @@ const getAllSemester = async (
   const sortCondition: { [key: string]: SortOrder } = {}
   sortCondition[sortBy] = sortOrder
 
-  const semseterData = await AcademicSemester.find()
+  const { searchTerm, ...filtersData } = filtersOptions
+
+  const andConditions = []
+  if (searchTerm) {
+    andConditions.push({
+      $or: academicSemesterSearchableFields.map(field => ({
+        [field]: { $regex: searchTerm, $options: 'i' },
+      })),
+    })
+  }
+
+  if (Object.keys(filtersData).length) {
+    andConditions.push({
+      $and: Object.entries(filtersData).map(([field, value]) => ({
+        [field]: [value],
+      })),
+    })
+  }
+
+  const semseterData = await AcademicSemester.find({ $and: andConditions })
     .sort(sortCondition)
     .skip(skip)
     .limit(limit)

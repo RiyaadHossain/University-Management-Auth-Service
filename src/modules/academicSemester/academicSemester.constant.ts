@@ -32,3 +32,7 @@ export const academicSemesterTitleCodeMap: { [key: string]: string } = {
   Summer: '02',
   Fall: '03',
 }
+
+export const paginationFields = ['page', 'limit', 'sortBy', 'sortOrder']
+export const filterFields = ['searchTerm', 'title', 'code', 'year']
+export const academicSemesterSearchableFields = ['title', 'code', 'year']
