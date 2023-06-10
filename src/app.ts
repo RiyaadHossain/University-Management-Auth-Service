@@ -23,13 +23,11 @@ app.use(globalErrorHandler)
 
 // Not Found API Error
 app.use((req: Request, res: Response, next: NextFunction) => {
-  if (!res.headersSent) {
-    res.status(httpStatus.NOT_FOUND).json({
-      success: false,
-      message: 'Not Found!',
-      errorMessages: [{ path: req.originalUrl, message: 'API Not Found!' }],
-    })
-  }
+  res.status(httpStatus.NOT_FOUND).json({
+    success: false,
+    message: 'Not Found!',
+    errorMessages: [{ path: req.originalUrl, message: 'API Not Found!' }],
+  })
   next()
 })
 
