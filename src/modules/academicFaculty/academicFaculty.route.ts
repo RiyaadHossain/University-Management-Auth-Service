@@ -14,7 +14,11 @@ router.get('/', AcadmicFacultyController.getAllFaculties)
 
 router.get('/:id', AcadmicFacultyController.getFaculty)
 
-router.patch('/:id', AcadmicFacultyController.updateFaculty)
+router.patch(
+  '/:id',
+  validateRequest(AcademicFacultyValidation.updateAcademicFacultyZodSchema),
+  AcadmicFacultyController.updateFaculty
+)
 
 router.delete('/:id', AcadmicFacultyController.deleteFaculty)
 
