@@ -4,8 +4,9 @@ import httpStatus from 'http-status-codes'
 import catchAsync from '../../shared/catchAsync'
 import sendResponse from '../../shared/sendResponse'
 import { AcademicSemesterService } from './academicSemester.services'
-import { filterFields, paginationFields } from './academicSemester.constant'
+import { academicSemesterFilterableFields } from './academicSemester.constant'
 import { IAcademicSemester } from './academicSemester.interface'
+import { paginationFields } from '../../constants/pagination'
 
 const createacSemester: RequestHandler = catchAsync(async (req, res) => {
   const semesterData = req.body
@@ -22,11 +23,11 @@ const createacSemester: RequestHandler = catchAsync(async (req, res) => {
 
 const getAllSemesters: RequestHandler = catchAsync(async (req, res) => {
   const paginationOptions = pick(req.query, paginationFields)
-  const filterOptions = pick(req.query, filterFields)
+  const filterOptions = pick(req.query, academicSemesterFilterableFields)
 
-  const result = await AcademicSemesterService.getAllSemester(
-    filterOptions,
-    paginationOptions
+  const result = await AcademicSemesterService.getAllSemesters(
+    paginationOptions,
+    filterOptions
   )
 
   sendResponse<IAcademicSemester[]>(res, {

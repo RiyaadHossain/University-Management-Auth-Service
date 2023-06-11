@@ -11,7 +11,7 @@ import {
 } from './academicSemester.constant'
 import {
   IAcademicSemester,
-  IFiltersOptions,
+  IAcademicSemesterFiltersOptions,
 } from './academicSemester.interface'
 
 const createSemester = async (
@@ -27,9 +27,9 @@ const createSemester = async (
   return createdSemeter
 }
 
-const getAllSemester = async (
-  filtersOptions: IFiltersOptions,
-  paginationOptions: IPaginationType
+const getAllSemesters = async (
+  paginationOptions: IPaginationType,
+  filtersOptions: IAcademicSemesterFiltersOptions
 ): Promise<IServiceReturnType<IAcademicSemester[]>> => {
   // Pagination Options
   const { page, limit, skip, sortBy, sortOrder } =
@@ -59,7 +59,9 @@ const getAllSemester = async (
     })
   }
 
-  const whereCondition = Object.keys(andConditions).length ? andConditions : {}
+  const whereCondition = Object.keys(andConditions).length
+    ? { $and: andConditions }
+    : {}
 
   const semsetersData = await AcademicSemester.find(whereCondition)
     .sort(sortCondition)
@@ -115,7 +117,7 @@ const deleteSemester = async (
 
 export const AcademicSemesterService = {
   createSemester,
-  getAllSemester,
+  getAllSemesters,
   getSemester,
   updateSemester,
   deleteSemester,

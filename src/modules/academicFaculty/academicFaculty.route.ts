@@ -10,4 +10,12 @@ router.post(
   AcadmicFacultyController.createFaculty
 )
 
+router.get('/', AcadmicFacultyController.getAllFaculties)
+
+router.get('/:id', AcadmicFacultyController.getFaculty)
+
+router.patch('/:id', AcadmicFacultyController.updateFaculty)
+
+router.delete('/:id', AcadmicFacultyController.deleteFaculty)
+
 export const AcademicFacultyRoute = router
