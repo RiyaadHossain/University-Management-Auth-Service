@@ -10,11 +10,11 @@ import { IGenericErrorMessage } from '../../interfaces/error'
 import handleValidationError from '../../errors/handleValidationError'
 import handleCastError from '../../errors/handleCastError'
 
-const globalErrorHandler: ErrorRequestHandler = (error, _req, res, next) => {
+const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   let statusCode = 500
   let message = 'Something went wrong'
   let errorMessages: IGenericErrorMessage[] = []
-
+  console.log(error)
   if (error.name === 'ValidationError') {
     const simplifiedError = handleValidationError(error)
     statusCode = simplifiedError.statusCode

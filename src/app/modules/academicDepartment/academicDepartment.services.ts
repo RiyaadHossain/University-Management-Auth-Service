@@ -1,13 +1,13 @@
 import { SortOrder } from 'mongoose'
-import { calculatePagination } from '../../helper/paginationHelper'
-import { IPaginationType } from '../../interfaces/pagination'
+import { calculatePagination } from '../../../helper/paginationHelper'
+import { IPaginationType } from '../../../interfaces/pagination'
 import {
   IAcademicDepartment,
   IAcademicDepartmentFiltersOptions,
 } from './academicDepartment.interface'
 import AcademicDepartment from './academicDepartment.model'
 import { academicDepartmentSearchableFields } from './academicDepartment.constant'
-import { IServiceReturnType } from '../../interfaces/common'
+import { IServiceReturnType } from '../../../interfaces/common'
 
 const createDepartment = async (
   payload: IAcademicDepartment

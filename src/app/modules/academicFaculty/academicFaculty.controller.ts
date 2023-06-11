@@ -1,11 +1,11 @@
 import { RequestHandler } from 'express'
-import catchAsync from '../../shared/catchAsync'
+import catchAsync from '../../../shared/catchAsync'
 import { AcademicFacultyService } from './academicFaculty.services'
-import sendResponse from '../../shared/sendResponse'
+import sendResponse from '../../../shared/sendResponse'
 import httpStatus from 'http-status-codes'
 import { IAcademicFaculty } from './academicFaculty.interface'
-import { pick } from '../../shared/pick'
-import { paginationFields } from '../../constants/pagination'
+import { pick } from '../../../shared/pick'
+import { paginationFields } from '../../../constants/pagination'
 import { academicFacultyFilterableFields } from './academicFaculty.constant'
 
 const createFaculty: RequestHandler = catchAsync(async (req, res) => {

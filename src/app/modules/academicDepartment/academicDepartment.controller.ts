@@ -1,11 +1,11 @@
 import { RequestHandler } from 'express'
-import catchAsync from '../../shared/catchAsync'
+import catchAsync from '../../../shared/catchAsync'
 import { AcademicDepartmentService } from './academicDepartment.services'
-import sendResponse from '../../shared/sendResponse'
+import sendResponse from '../../../shared/sendResponse'
 import httpStatus from 'http-status-codes'
 import { IAcademicDepartment } from './academicDepartment.interface'
-import { pick } from '../../shared/pick'
-import { paginationFields } from '../../constants/pagination'
+import { pick } from '../../../shared/pick'
+import { paginationFields } from '../../../constants/pagination'
 import { academicDepartmentFilterableFields } from './academicDepartment.constant'
 
 const createDepartment: RequestHandler = catchAsync(async (req, res) => {

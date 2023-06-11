@@ -1,12 +1,12 @@
 import { RequestHandler } from 'express'
-import { pick } from '../../shared/pick'
+import { pick } from '../../../shared/pick'
 import httpStatus from 'http-status-codes'
-import catchAsync from '../../shared/catchAsync'
-import sendResponse from '../../shared/sendResponse'
+import catchAsync from '../../../shared/catchAsync'
+import sendResponse from '../../../shared/sendResponse'
 import { AcademicSemesterService } from './academicSemester.services'
 import { academicSemesterFilterableFields } from './academicSemester.constant'
 import { IAcademicSemester } from './academicSemester.interface'
-import { paginationFields } from '../../constants/pagination'
+import { paginationFields } from '../../../constants/pagination'
 
 const createacSemester: RequestHandler = catchAsync(async (req, res) => {
   const semesterData = req.body

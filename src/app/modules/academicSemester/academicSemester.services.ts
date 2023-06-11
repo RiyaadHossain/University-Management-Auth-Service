@@ -1,10 +1,10 @@
 import { SortOrder } from 'mongoose'
 import httpStatus from 'http-status-codes'
-import APIError from '../../errors/APIErrors'
+import APIError from '../../../errors/APIErrors'
 import AcademicSemester from './academicSemester.model'
-import { IServiceReturnType } from '../../interfaces/common'
-import { IPaginationType } from '../../interfaces/pagination'
-import { calculatePagination } from '../../helper/paginationHelper'
+import { IServiceReturnType } from '../../../interfaces/common'
+import { IPaginationType } from '../../../interfaces/pagination'
+import { calculatePagination } from '../../../helper/paginationHelper'
 import {
   academicSemesterTitleCodeMap,
   academicSemesterSearchableFields,
