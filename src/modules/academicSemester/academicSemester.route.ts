@@ -20,4 +20,6 @@ router.patch(
   AcademicSemesterController.updateSemeter
 )
 
+router.delete('/:id', AcademicSemesterController.deleteSemester)
+
 export const AcademicSemesterRoute = router
