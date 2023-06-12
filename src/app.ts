@@ -1,8 +1,8 @@
 import cors from 'cors'
 import httpStatus from 'http-status-codes'
 import { applicationRoutes } from './app/routes'
-import express, { Application, NextFunction, Request, Response } from 'express'
 import globalErrorHandler from './app/middlewares/globalErrorHandler'
+import express, { Application, NextFunction, Request, Response } from 'express'
 const app: Application = express()
 
 // Middlewares

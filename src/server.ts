@@ -19,18 +19,18 @@ mongoose
 const server = app.listen(config.PORT, () => {
   logger.info(`Application is listening ✅`)
 })
+
 // Unhandled Rejection: Gracefully off the server
 process.on('unhandledRejection', error => {
   errorLogger.error(`Unhandled Reject is closing the server ❌ ${error}`)
-  console.log(error)
 
-  // if (server) {
-  //   server.close(() => {
-  //     process.exit(1)
-  //   })
-  // } else {
-  //   process.exit(1)
-  // }
+  if (server) {
+    server.close(() => {
+      process.exit(1)
+    })
+  } else {
+    process.exit(1)
+  }
 })
 
 // SIGTERM

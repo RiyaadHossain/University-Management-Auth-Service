@@ -3,14 +3,13 @@ import { pick } from '../../../shared/pick'
 import httpStatus from 'http-status-codes'
 import catchAsync from '../../../shared/catchAsync'
 import sendResponse from '../../../shared/sendResponse'
-import { AcademicSemesterService } from './academicSemester.services'
-import { academicSemesterFilterableFields } from './academicSemester.constant'
 import { IAcademicSemester } from './academicSemester.interface'
 import { paginationFields } from '../../../constants/pagination'
+import { AcademicSemesterService } from './academicSemester.services'
+import { academicSemesterFilterableFields } from './academicSemester.constant'
 
 const createacSemester: RequestHandler = catchAsync(async (req, res) => {
   const semesterData = req.body
-
   const result = await AcademicSemesterService.createSemester(semesterData)
 
   sendResponse<IAcademicSemester>(res, {
