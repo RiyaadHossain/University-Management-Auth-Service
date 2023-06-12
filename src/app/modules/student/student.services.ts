@@ -6,6 +6,7 @@ import { IServiceReturnType } from '../../../interfaces/common'
 import { IStudent, IStudentFiltersOptions } from './student.interface'
 import Student from './student.model'
 import { studentSearchableFields } from './student.constant'
+import User from '../user/user.model'
 
 const getAllStudents = async (
   paginationOptions: IPaginationType,
@@ -115,6 +116,7 @@ const updateStudent = async (
 
 const deleteStudent = async (id: string): Promise<IStudent | null> => {
   const data = await Student.findByIdAndDelete(id)
+  await User.findByIdAndDelete(id)
 
   return data
 }

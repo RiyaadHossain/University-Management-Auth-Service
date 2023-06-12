@@ -1,9 +1,13 @@
+import { ENUM_USER_ROLE } from '../../../enums/user'
 import { IAcademicSemester } from '../academicSemester/academicSemester.interface'
 import User from './user.model'
 
-// Student Id
+// Generate Student Id
 const lastStudent = async (): Promise<string | null> => {
-  const user = await User.findOne({ role: 'student' }, { id: 1, _id: 0 }).sort({
+  const user = await User.findOne(
+    { role: ENUM_USER_ROLE.STUDENT },
+    { id: 1, _id: 0 }
+  ).sort({
     createdAt: -1,
   })
   if (!user) return null
@@ -23,9 +27,12 @@ export const generateStudentId = async (
   return currentUserId
 }
 
-// Faculty Id
+// Generate Faculty Id
 const lastFaculty = async (): Promise<string | null> => {
-  const user = await User.findOne({ role: 'faculty' }, { id: 1, _id: 0 }).sort({
+  const user = await User.findOne(
+    { role: ENUM_USER_ROLE.FACULTY },
+    { id: 1, _id: 0 }
+  ).sort({
     createdAt: -1,
   })
   if (!user) return null
@@ -40,9 +47,12 @@ export const generateFacultyId = async () => {
   return currentUserId
 }
 
-// Admin Id
+// Generate Admin Id
 const lastAdmin = async (): Promise<string | null> => {
-  const user = await User.findOne({ role: 'admin' }, { id: 1, _id: 0 }).sort({
+  const user = await User.findOne(
+    { role: ENUM_USER_ROLE.ADMIN },
+    { id: 1, _id: 0 }
+  ).sort({
     createdAt: -1,
   })
   if (!user) return null
