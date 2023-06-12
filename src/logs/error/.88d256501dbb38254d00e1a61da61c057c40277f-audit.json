@@ -114,6 +114,11 @@
             "date": 1686535415319,
             "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\error\\error-2023-06-12-08.log",
             "hash": "2035a67d4e3f80378e47b2b73dc8fed8df8d1b9ea86148d436ebd43c5ad2f8a6"
+        },
+        {
+            "date": 1686539498129,
+            "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\error\\error-2023-06-12-09.log",
+            "hash": "b30c78c5c69c7a5d3249ae9a45e4ee47f4498e808e29a6f64105848c826f0d1d"
         }
     ],
     "hashType": "sha256"
