@@ -43,3 +43,12 @@ export type IStudent = {
 }
 
 export type StudentModel = Model<IStudent, Record<string, unknown>>
+
+export type IStudentFiltersOptions = {
+  searchTerm?: string
+  id?: string
+  bloodGroup?: string
+  email?: string
+  contactNo?: string
+  emergencyContactNo?: string
+}

@@ -41,7 +41,7 @@ const getFaculty: RequestHandler = catchAsync(async (req, res) => {
   const id = req.params.id
   const result = await AcademicFacultyService.getFaculty(id)
 
-  sendResponse(res, {
+  sendResponse<IAcademicFaculty>(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Faculty data retrived successfully!',
@@ -54,7 +54,7 @@ const updateFaculty: RequestHandler = catchAsync(async (req, res) => {
   const facultyData = req.body
   const result = await AcademicFacultyService.updateFaculty(id, facultyData)
 
-  sendResponse(res, {
+  sendResponse<IAcademicFaculty>(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Faculty data updated successfully!',
@@ -66,7 +66,7 @@ const deleteFaculty: RequestHandler = catchAsync(async (req, res) => {
   const id = req.params.id
   const result = await AcademicFacultyService.deleteFaculty(id)
 
-  sendResponse(res, {
+  sendResponse<IAcademicFaculty>(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'Faculty data deleted successfully!',
