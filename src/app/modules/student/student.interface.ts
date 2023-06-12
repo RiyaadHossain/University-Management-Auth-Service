@@ -41,4 +41,5 @@ export type IStudent = {
   academicFaculty: ObjectId
   profileImg?: string
 }
+
 export type StudentModel = Model<IStudent, Record<string, unknown>>

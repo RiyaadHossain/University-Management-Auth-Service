@@ -7,14 +7,14 @@ const lastStudent = async (): Promise<string | null> => {
     createdAt: -1,
   })
   if (!user) return null
-  return user.id.substring(4)
+  return user?.id?.substring(4)
 }
 
 export const generateStudentId = async (
-  academicSemester: IAcademicSemester
+  academicSemester: IAcademicSemester | null
 ) => {
-  const year = academicSemester.year.substring(2)
-  const code = academicSemester.code
+  const year = academicSemester?.year?.substring(2)
+  const code = academicSemester?.code
 
   const lastUserId = (await lastStudent()) || String(0).padStart(5, '0')
   let currentUserId = (parseInt(lastUserId) + 1).toString().padStart(5, '0')
@@ -29,7 +29,7 @@ const lastFaculty = async (): Promise<string | null> => {
     createdAt: -1,
   })
   if (!user) return null
-  return user.id.substring(2)
+  return user?.id?.substring(2)
 }
 
 export const generateFacultyId = async () => {

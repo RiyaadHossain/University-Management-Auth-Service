@@ -4,18 +4,18 @@ import { RequestHandler } from 'express'
 import sendResponse from '../../../shared/sendResponse'
 import httpStatus from 'http-status-codes'
 
-const createUser: RequestHandler = catchAsync(async (req, res) => {
-  const user = req.body
-  const result = await UserService.createUser(user)
+const createStudent: RequestHandler = catchAsync(async (req, res) => {
+  const { student, ...user } = req.body
+  const result = await UserService.createStudent(student, user)
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'User account created successfully!',
+    message: 'Student account created successfully!',
     data: result,
   })
 })
 
 export const UserController = {
-  createUser,
+  createStudent,
 }
