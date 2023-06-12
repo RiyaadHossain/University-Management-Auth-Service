@@ -2,7 +2,7 @@ import { Schema, Types, model } from 'mongoose'
 import { IStudent, StudentModel } from './student.interface'
 import { bloodGroup, gender } from './student.constant'
 
-export const studentSchema = new Schema({
+export const studentSchema = new Schema<IStudent>({
   id: {
     type: String,
     required: true,
@@ -22,6 +22,7 @@ export const studentSchema = new Schema({
   gender: {
     type: String,
     enum: gender,
+    required: true,
   },
   dateOfBirth: {
     type: String,
@@ -114,6 +115,7 @@ export const studentSchema = new Schema({
     ref: 'AcademicFaculty',
     required: true,
   },
+  profileImg: { type: String /* required: true  */ },
 })
 
 const Student = model<IStudent, StudentModel>('Student', studentSchema)

@@ -1,4 +1,4 @@
-import { Model, Types } from 'mongoose'
+import { Model, ObjectId } from 'mongoose'
 
 type Name = {
   fisrtName: string
@@ -26,7 +26,7 @@ type LocalGuardian = {
 export type IStudent = {
   id: string
   name: Name
-  Gender: 'male' | 'female'
+  gender: 'male' | 'female'
   dateOfBirth: string
   email: string
   contactNo: string
@@ -36,8 +36,9 @@ export type IStudent = {
   bloodGroup: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-'
   guardian: Guardian
   localGuardian: LocalGuardian
-  academicSemester: Types.ObjectId
-  academicDepartment: Types.ObjectId
-  academicFaculty: Types.ObjectId
+  academicSemester: ObjectId
+  academicDepartment: ObjectId
+  academicFaculty: ObjectId
+  profileImg?: string
 }
 export type StudentModel = Model<IStudent, Record<string, unknown>>
