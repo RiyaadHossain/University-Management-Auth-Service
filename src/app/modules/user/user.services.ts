@@ -1,12 +1,20 @@
 import config from '../../../config'
 import APIError from '../../../errors/APIErrors'
+import { IAcademicSemester } from '../academicSemester/academicSemester.interface'
 import { IUser } from './user.interface'
 import User from './user.model'
-import { generateUserId } from './user.utils'
+import { generateStudentId } from './user.utils'
 
 const createUser = async (user: IUser): Promise<IUser | null> => {
+  const academicSemester: IAcademicSemester = {
+    title: 'Fall',
+    year: '2025',
+    code: '02',
+    startMonth: 'February',
+    endMonth: 'April',
+  }
   // Auto Generated Id
-  const id = await generateUserId()
+  const id = await generateStudentId(academicSemester)
   user.id = id
 
   // Default Password
