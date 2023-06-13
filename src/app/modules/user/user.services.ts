@@ -124,6 +124,7 @@ const createFaculty = async (
   } catch (error) {
     await session.abortTransaction()
     await session.endSession()
+    throw error
   }
 
   if (userAllData)

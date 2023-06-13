@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { SortOrder } from 'mongoose'
+import mongoose, { SortOrder } from 'mongoose'
 import { calculatePagination } from '../../../helper/paginationHelper'
 import { IPaginationType } from '../../../interfaces/pagination'
 import { IServiceReturnType } from '../../../interfaces/common'
@@ -115,10 +115,37 @@ const updateStudent = async (
 }
 
 const deleteStudent = async (id: string): Promise<IStudent | null> => {
-  const data = await Student.findByIdAndDelete(id)
-  await User.findByIdAndDelete(id)
+  let deletedStudent = null
+  const session = await mongoose.startSession()
 
-  return data
+  try {
+    session.startTransaction()
+
+    // Delete User Doc
+    const deletedUser = await User.findByIdAndDelete(id, { session })
+    if (!deletedUser) {
+      throw new Error(`Failed to delete user account`)
+    }
+
+    // Delete Student Doc
+    const deletedData = await Student.findByIdAndDelete(id, {
+      session,
+    }).populate('academicSemester academicDepartment academicFaculty')
+    deletedStudent = deletedData
+
+    if (!deletedData) {
+      throw new Error(`Failed to delete student account`)
+    }
+
+    await session.commitTransaction()
+    await session.endSession()
+  } catch (error) {
+    await session.abortTransaction()
+    await session.endSession()
+    throw error
+  }
+
+  return deletedStudent
 }
 
 export const StudentService = {
