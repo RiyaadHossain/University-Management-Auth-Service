@@ -6,8 +6,11 @@ import { IStudent } from '../student/student.interface'
 import Student from '../student/student.model'
 import { IUser } from './user.interface'
 import User from './user.model'
-import { generateStudentId } from './user.utils'
+import { generateFacultyId, generateStudentId } from './user.utils'
 import httpStatus from 'http-status-codes'
+import { IFaculty } from '../faculty/faculty.interface'
+import Faculty from '../faculty/faculty.model'
+import { ENUM_USER_ROLE } from '../../../enums/user'
 
 const createStudent = async (
   student: IStudent,
@@ -18,18 +21,19 @@ const createStudent = async (
     student.academicSemester
   )
 
-  let combinedUserData = null
+  let userAllData = null
 
   const session = await mongoose.startSession()
 
   try {
     session.startTransaction()
 
-    // Generate Id
+    // Generate ID
     const id = await generateStudentId(academicSemester)
+    student.id = id
+    user.id = id
 
     // Create Student Doc
-    student.id = id
     const newStudent = await Student.create([student], { session })
 
     if (!newStudent.length)
@@ -38,9 +42,8 @@ const createStudent = async (
         'Failed to create Stduent Account'
       )
 
-    // Set User default data (id, role, password)
-    user.id = id
-    user.role = 'student'
+    // Set User default data (role, student, password)
+    user.role = ENUM_USER_ROLE.STUDENT
     user.student = newStudent[0]._id
     if (!user.password) {
       user.password = config.UNIVERSITY_STUDENT_PASS as string
@@ -48,7 +51,7 @@ const createStudent = async (
 
     // Create User
     const newUser = await User.create([user], { session })
-    combinedUserData = newUser[0]
+    userAllData = newUser[0]
 
     if (!newUser.length) {
       throw new APIError(
@@ -64,8 +67,8 @@ const createStudent = async (
     throw error
   }
 
-  if (combinedUserData) {
-    combinedUserData = await User.findById(combinedUserData._id).populate({
+  if (userAllData) {
+    userAllData = await User.findById(userAllData._id).populate({
       path: 'student',
       populate: [
         { path: 'academicSemester' },
@@ -75,9 +78,64 @@ const createStudent = async (
     })
   }
 
-  return combinedUserData
+  return userAllData
+}
+
+const createFaculty = async (
+  faculty: IFaculty,
+  user: Partial<IUser>
+): Promise<IUser | null> => {
+  let userAllData = null
+  const session = await mongoose.startSession()
+  try {
+    session.startTransaction()
+
+    // Generate Faculty ID
+    const id = await generateFacultyId()
+    faculty.id = id
+    user.id = id
+
+    // Create Faculty Doc
+    const newFaculty = await Faculty.create([faculty], { session })
+
+    if (!newFaculty.length)
+      throw new APIError(
+        httpStatus.BAD_REQUEST,
+        'Failed to create Faculty account!'
+      )
+
+    // Set User default data (role, student, password)
+    user.role = ENUM_USER_ROLE.FACULTY
+    user.faculty = newFaculty[0]._id
+    if (!user.password) user.password = config.UNIVERSITY_FACULTY_PASS
+
+    // Create User Doc
+    const newUser = await User.create([user], { session })
+    userAllData = newUser[0]
+
+    if (!newUser.length)
+      throw new APIError(
+        httpStatus.BAD_REQUEST,
+        'Failed to create Faculty account!'
+      )
+
+    await session.commitTransaction()
+    await session.endSession()
+  } catch (error) {
+    await session.abortTransaction()
+    await session.endSession()
+  }
+
+  if (userAllData)
+    userAllData = await User.findById(userAllData._id).populate({
+      path: 'faculty',
+      populate: [{ path: 'academicFaculty' }, { path: 'academicDepartment' }],
+    })
+
+  return userAllData
 }
 
 export const UserService = {
   createStudent,
+  createFaculty,
 }

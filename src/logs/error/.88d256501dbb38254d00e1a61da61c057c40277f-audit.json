@@ -134,6 +134,16 @@
             "date": 1686567824760,
             "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\error\\error-2023-06-12-17.log",
             "hash": "560eb290c3406e731649fd68a9974378c0b837fbd4d953bb93cb0e2d3c4d45a5"
+        },
+        {
+            "date": 1686615981575,
+            "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\error\\error-2023-06-13-06.log",
+            "hash": "d9ccf26adbaa661804484e9f6e0b422a0c5d2742feb5620330f7f496473d63f9"
+        },
+        {
+            "date": 1686618364831,
+            "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\error\\error-2023-06-13-07.log",
+            "hash": "77f521579acb2f7c6f9a329cf23669367b6eeb6a3d24fc9bccc4060447aec9f0"
         }
     ],
     "hashType": "sha256"
