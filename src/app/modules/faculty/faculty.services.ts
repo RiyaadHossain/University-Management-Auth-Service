@@ -75,17 +75,17 @@ const updateFaculty = async (
   id: string,
   payload: Partial<IFaculty>
 ): Promise<IFaculty | null> => {
-  const { name, ...restFacultyData } = payload
+  const { name, ...facultyData } = payload
 
   /*  Handle 'name' Embeded Fields Dynamically: */
   if (name && Object.keys(name).length > 0) {
     Object.keys(name).forEach(key => {
       const nameKey = `name.${key}` as keyof Partial<IFaculty>
-      ;(restFacultyData as any)[nameKey] = name[key as keyof typeof name]
+      ;(facultyData as any)[nameKey] = name[key as keyof typeof name]
     })
   }
 
-  const data = await Faculty.findOneAndUpdate({ id }, restFacultyData, {
+  const data = await Faculty.findOneAndUpdate({ id }, facultyData, {
     new: true,
   })
     .populate('academicDepartment academicFaculty')

@@ -10,7 +10,7 @@ const lastStudent = async (): Promise<string | null> => {
   ).sort({
     createdAt: -1,
   })
-  if (!user) return null
+
   return user?.id?.substring(4)
 }
 

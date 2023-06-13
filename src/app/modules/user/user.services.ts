@@ -16,7 +16,6 @@ const createStudent = async (
   student: IStudent,
   user: IUser
 ): Promise<IUser | null> => {
-  // Auto Generated Id
   const academicSemester = await AcademicSemester.findById(
     student.academicSemester
   )
