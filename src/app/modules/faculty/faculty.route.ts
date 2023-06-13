@@ -15,3 +15,5 @@ router.patch(
 )
 
 router.delete('/:id', FacultyController.deleteFaculty)
+
+export const FacultyRoute = router

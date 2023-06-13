@@ -34,17 +34,14 @@ const facultySchema = new Schema<IFaculty>({
   email: {
     type: String,
     required: true,
-    unique: true,
   },
   contactNo: {
     type: String,
     required: true,
-    unique: true,
   },
   emergencyContactNo: {
     type: String,
     required: true,
-    unique: true,
   },
   presentAddress: {
     type: String,
@@ -66,10 +63,12 @@ const facultySchema = new Schema<IFaculty>({
   },
   academicDepartment: {
     type: Schema.Types.ObjectId,
+    ref: 'AcademicDepartment',
     required: true,
   },
   academicFaculty: {
     type: Schema.Types.ObjectId,
+    ref: 'AcademicFaculty',
     required: true,
   },
 })

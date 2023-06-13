@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import mongoose, { SortOrder } from 'mongoose'
+import { SortOrder } from 'mongoose'
 import { calculatePagination } from '../../../helper/paginationHelper'
 import { IPaginationType } from '../../../interfaces/pagination'
 import { IServiceReturnType } from '../../../interfaces/common'
@@ -95,36 +95,10 @@ const updateFaculty = async (
 }
 
 const deleteFaculty = async (id: string): Promise<IFaculty | null> => {
-  let deletedFaculty = null
-  const session = await mongoose.startSession()
+  const data = await Faculty.findOneAndDelete({ id })
+  await User.findOneAndDelete({ id })
 
-  try {
-    session.startTransaction()
-
-    // Delete Faculty Doc
-    const deletedData = await Faculty.findByIdAndDelete(id, {
-      session,
-    }).populate('academicFaculty academicDepartment')
-    deletedFaculty = deletedData
-    if (!deletedData) {
-      throw new Error(`Failed to delete faculty with id: ${id}`)
-    }
-
-    // Delete User Doc
-    const deletedUser = await User.findByIdAndDelete(id, { session })
-    if (!deletedUser) {
-      throw new Error(`Failed to delete user with id: ${id}`)
-    }
-
-    await session.commitTransaction()
-    await session.endSession()
-  } catch (error) {
-    await session.abortTransaction()
-    await session.endSession()
-    throw error
-  }
-
-  return deletedFaculty
+  return data
 }
 
 export const FacultyService = {
