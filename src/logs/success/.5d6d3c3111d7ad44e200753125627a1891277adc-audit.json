@@ -1,15 +1,20 @@
 {
-    "keep": {
-        "days": true,
-        "amount": 14
+  "keep": {
+    "days": true,
+    "amount": 14
+  },
+  "auditLog": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\.5d6d3c3111d7ad44e200753125627a1891277adc-audit.json",
+  "files": [
+    {
+      "date": 1685677109078,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-02-09.log",
+      "hash": "cb86df4e6cae56cccf03233f2c47395ef5b760aaff9eda586d44c077a84541c9"
     },
-    "auditLog": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\.5d6d3c3111d7ad44e200753125627a1891277adc-audit.json",
-    "files": [
-        {
-            "date": 1685677109078,
-            "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-02-09.log",
-            "hash": "cb86df4e6cae56cccf03233f2c47395ef5b760aaff9eda586d44c077a84541c9"
-        }
-    ],
-    "hashType": "sha256"
+    {
+      "date": 1685927972964,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-05-07.log",
+      "hash": "c3828f34e0e7e88917decf776ddbba8a28ab044c896f4ee4513a5319a15872d8"
+    }
+  ],
+  "hashType": "sha256"
 }

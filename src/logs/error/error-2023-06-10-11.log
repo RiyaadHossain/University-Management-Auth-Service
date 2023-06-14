@@ -1,0 +1,1 @@
+[Error] Unhandled Reject is closing the server ❌ CastError: Cast to ObjectId failed for value "647eaac82f5dfb3de2cb9a0" (type string) at path "_id" for model "AcademicSemester" 2023-06-10T05:54:42.197Z

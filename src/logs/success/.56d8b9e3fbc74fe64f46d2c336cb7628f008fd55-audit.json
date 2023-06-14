@@ -1,0 +1,170 @@
+{
+  "keep": {
+    "days": true,
+    "amount": 10
+  },
+  "auditLog": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\.56d8b9e3fbc74fe64f46d2c336cb7628f008fd55-audit.json",
+  "files": [
+    {
+      "date": 1685929118160,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-05-07.log",
+      "hash": "60b72af5a90a461051d5839e6bac63de49c2c1cfa880f9e6fae49730936e74a2"
+    },
+    {
+      "date": 1685930579894,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-05-08.log",
+      "hash": "2972b897745ccc20463cb182f3e2e5a14e188d2e4515efc0164b7fe1c964c3d6"
+    },
+    {
+      "date": 1685934085492,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-05-09.log",
+      "hash": "f416bf620ce37510bb8ce17088b247f812587d83e7ebf9f5388b27ed93165f0f"
+    },
+    {
+      "date": 1685937605613,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-05-10.log",
+      "hash": "199ec0e5c9e281d4f1f6ef6e11c87d60c7014f500bb196a79711d653cbe595ec"
+    },
+    {
+      "date": 1686020497660,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-06-09.log",
+      "hash": "fffda634ccdfc5b80418f7933328f8b08c537ab12ea7e4fdb6945766402e7309"
+    },
+    {
+      "date": 1686026252733,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-06-10.log",
+      "hash": "f3d76687a3481707e62f1ae3b67ca743fae3bd071a5505f3ebf387448e3f74dc"
+    },
+    {
+      "date": 1686100559731,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-07-07.log",
+      "hash": "143ad55d798bd15c375823b17652ee2b9a5d6fc619892264c54d14035263b1c2"
+    },
+    {
+      "date": 1686275178625,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-09-07.log",
+      "hash": "e1fc123acb2944e137e3279328b9c687d373be2a69bbab788d6b581921e292d3"
+    },
+    {
+      "date": 1686276471248,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-09-08.log",
+      "hash": "9cde76d46729183604538b6e3c4ab0cecf4fc9e2621cc68a461d59486c2e0f17"
+    },
+    {
+      "date": 1686279719051,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-09-09.log",
+      "hash": "e1b321f8167e41f0cd2b31c17e7b29ff24392f27d4ff866838126b957eb3aec0"
+    },
+    {
+      "date": 1686285393258,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-09-10.log",
+      "hash": "61320e37dbc0848ff12d398d90d83b8540b356dcc1bf76b8113b4b4dff173bd8"
+    },
+    {
+      "date": 1686367134929,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-10-09.log",
+      "hash": "0ac4a54f488ab455abd8300bbcdff27d1745efa0f57838f19c44c2083c2c8a4f"
+    },
+    {
+      "date": 1686369729488,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-10-10.log",
+      "hash": "910ae303ecfdf4fc2e704a2b52caf82bf9f31692927bf83fdd67971a5cc57a27"
+    },
+    {
+      "date": 1686373212166,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-10-11.log",
+      "hash": "2604247c843c98f1daef5476e0d4ce0e6345bc358531ace687198e156d7a928b"
+    },
+    {
+      "date": 1686378080423,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-10-12.log",
+      "hash": "f1d5b628dd5b460cef13a25e39da77f948f0e40c2ca5f3d389c9bde323cdaef4"
+    },
+    {
+      "date": 1686466974198,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-11-13.log",
+      "hash": "a998e5783d7377dee90da4be6ae9207047f0d348581bbd595e54ba356c607ab0"
+    },
+    {
+      "date": 1686470948728,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-11-14.log",
+      "hash": "9ae4a21bdc6584ce2a0297dddb9f0730f6adb873160cb2125f88c58b8bc65620"
+    },
+    {
+      "date": 1686474104209,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-11-15.log",
+      "hash": "cc25a62bc33be9f4d7063415623b041afe6ef8196102bb466db4caadc2a245c3"
+    },
+    {
+      "date": 1686478050263,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-11-16.log",
+      "hash": "f82f6615a51e8ae7b7b32388bb69a1438dbae9ab638ecbe80f1b96038a2fc22b"
+    },
+    {
+      "date": 1686485630716,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-11-18.log",
+      "hash": "77f561190b988733dc904c4b43c28c846cbacc08ecfe2e266af2b28a4dc9d264"
+    },
+    {
+      "date": 1686531122852,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-12-06.log",
+      "hash": "86b7a58ebede761e3be752bfba5f4a497f2fb1cadc7453e80d2366900de90e3c"
+    },
+    {
+      "date": 1686535415311,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-12-08.log",
+      "hash": "88acef8d8627729cf859bc59f2ea6dfe14be2d05b2741efc44e994edc7c8708e"
+    },
+    {
+      "date": 1686539498120,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-12-09.log",
+      "hash": "a5e313b284c210fdea989ea27152a4ef65d41f514f97785a5d9661ee09763687"
+    },
+    {
+      "date": 1686552537356,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-12-12.log",
+      "hash": "450461bfd84a25bf39f357a7982b4d402a9acf71f0964bb28b1b160175285367"
+    },
+    {
+      "date": 1686565881081,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-12-16.log",
+      "hash": "f079a723dc680d43e42d2bf27e42a286ca103791423d19666bd6ab6b1e50e2f3"
+    },
+    {
+      "date": 1686567824751,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-12-17.log",
+      "hash": "d188eb2a5827bf74c3f5b76076d80992da69f64b71e32bbb6e464fa363539e29"
+    },
+    {
+      "date": 1686615981565,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-13-06.log",
+      "hash": "c064f4048e46508b1f47c5f564d423ca8319b043d269f10b414912f8ab27b0c0"
+    },
+    {
+      "date": 1686618364822,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-13-07.log",
+      "hash": "bdaa5f3df838bfdb1cd40ce1723385e280d1f0052aeb89d1187f45e2655216e5"
+    },
+    {
+      "date": 1686621707555,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-13-08.log",
+      "hash": "9c95e317400f0a149a7f07b33136db5501f0a49ffc73d69f8df171ef35f55cbf"
+    },
+    {
+      "date": 1686625682768,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-13-09.log",
+      "hash": "35c9cb11fceb0eb29902eab76d6e082abdb1bdd151f934271daa09f2c59295d0"
+    },
+    {
+      "date": 1686705664999,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-14-07.log",
+      "hash": "fc136365159f74180302c35b32866c4a25102ddeab59845bcc726b04a2751734"
+    },
+    {
+      "date": 1686709534238,
+      "name": "E:\\Programming Hero\\Web Dev 2.0\\3. University-Management\\src\\logs\\success\\success-2023-06-14-08.log",
+      "hash": "1b70a528d320d91b10b002694a16d7dfa822c8ae95ae42be4534bd3e9ef4cf14"
+    }
+  ],
+  "hashType": "sha256"
+}

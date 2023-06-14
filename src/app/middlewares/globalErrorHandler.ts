@@ -1,23 +1,32 @@
-import { NextFunction, Request, Response } from 'express'
-import { IGenericErrorMessage } from '../../interfaces/error'
-import config from '../../config'
-import { handleValidationError } from '../../errors/handleValidationError'
-import APIError from '../../errors/APIErrors'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable no-unused-vars */
 import { Error } from 'mongoose'
+import { ZodError } from 'zod'
+import config from '../../config'
+import APIError from '../../errors/APIErrors'
+import { ErrorRequestHandler } from 'express'
+import handleZodError from '../../errors/handleZodError'
+import { IGenericErrorMessage } from '../../interfaces/error'
+import handleValidationError from '../../errors/handleValidationError'
+import handleCastError from '../../errors/handleCastError'
 
-const globalErrorHandler = (
-  error: Error.ValidationError,
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   let statusCode = 500
   let message = 'Something went wrong'
   let errorMessages: IGenericErrorMessage[] = []
-  const stack = ''
 
-  if (error?.name === 'ValidationError') {
+  if (error.name === 'ValidationError') {
     const simplifiedError = handleValidationError(error)
+    statusCode = simplifiedError.statusCode
+    message = simplifiedError.message
+    errorMessages = simplifiedError.errorMessages
+  } else if (error.name === 'CastError') {
+    const simplifiedError = handleCastError(error)
+    statusCode = simplifiedError.statusCode
+    message = simplifiedError.message
+    errorMessages = simplifiedError.errorMessages
+  } else if (error instanceof ZodError) {
+    const simplifiedError = handleZodError(error)
     statusCode = simplifiedError.statusCode
     message = simplifiedError.message
     errorMessages = simplifiedError.errorMessages
@@ -38,10 +47,8 @@ const globalErrorHandler = (
     success: false,
     message,
     errorMessages,
-    stack: config.NODE_ENV === 'development' ? stack : undefined,
+    stack: config.NODE_ENV === 'development' ? error.stack : undefined,
   })
-
-  next()
 }
 
 export default globalErrorHandler

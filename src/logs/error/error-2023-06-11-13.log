@@ -1,0 +1,2 @@
+[Error] Unable to connect MongoDB ❌ Error: querySrv ETIMEOUT _mongodb._tcp.mycluster.rn7n6.mongodb.net 2023-06-11T07:09:22.685Z
+[Error] Unhandled Reject is closing the server ❌ MongoServerError: E11000 duplicate key error collection: University-Management.academicfaculties index: title_1 dup key: { title: "Business Adminstration" } 2023-06-11T07:14:57.509Z
