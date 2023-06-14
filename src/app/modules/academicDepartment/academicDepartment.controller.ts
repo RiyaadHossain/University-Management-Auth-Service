@@ -22,10 +22,10 @@ const createDepartment: RequestHandler = catchAsync(async (req, res) => {
   })
 })
 
-const getAllFaculties: RequestHandler = catchAsync(async (req, res) => {
+const getAllDepartments: RequestHandler = catchAsync(async (req, res) => {
   const paginationOptions = pick(req.query, paginationFields)
   const filterOptions = pick(req.query, academicDepartmentFilterableFields)
-  const result = await AcademicDepartmentService.getAllFaculties(
+  const result = await AcademicDepartmentService.getAllDepartments(
     paginationOptions,
     filterOptions
   )
@@ -79,9 +79,9 @@ const deleteDepartment: RequestHandler = catchAsync(async (req, res) => {
   })
 })
 
-export const AcadmicDepartmentController = {
+export const AcademicDepartmentController = {
   createDepartment,
-  getAllFaculties,
+  getAllDepartments,
   getDepartment,
   updateDepartment,
   deleteDepartment,

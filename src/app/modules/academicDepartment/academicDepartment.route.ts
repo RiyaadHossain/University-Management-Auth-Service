@@ -1,5 +1,5 @@
 import express from 'express'
-import { AcadmicDepartmentController } from './academicDepartment.controller'
+import { AcademicDepartmentController } from './academicDepartment.controller'
 import { AcademicDepartmentValidation } from './academicDepartment.validation'
 import { validateRequest } from '../../middlewares/validateRequest'
 const router = express.Router()
@@ -9,21 +9,21 @@ router.post(
   validateRequest(
     AcademicDepartmentValidation.createAcademicDepartmentZodSchema
   ),
-  AcadmicDepartmentController.createDepartment
+  AcademicDepartmentController.createDepartment
 )
 
-router.get('/', AcadmicDepartmentController.getAllFaculties)
+router.get('/', AcademicDepartmentController.getAllDepartments)
 
-router.get('/:id', AcadmicDepartmentController.getDepartment)
+router.get('/:id', AcademicDepartmentController.getDepartment)
 
 router.patch(
   '/:id',
   validateRequest(
     AcademicDepartmentValidation.updateAcademicDepartmentZodSchema
   ),
-  AcadmicDepartmentController.updateDepartment
+  AcademicDepartmentController.updateDepartment
 )
 
-router.delete('/:id', AcadmicDepartmentController.deleteDepartment)
+router.delete('/:id', AcademicDepartmentController.deleteDepartment)
 
 export const AcademicDepartmentRoute = router
