@@ -1,4 +1,3 @@
-// Service Return
 export type IServiceReturnType<T> = {
   meta: {
     page: number
@@ -8,7 +7,6 @@ export type IServiceReturnType<T> = {
   data: T
 }
 
-// API Response Type
 export type IAPIResponse<T> = {
   statusCode: number
   success: boolean
@@ -20,3 +18,14 @@ export type IAPIResponse<T> = {
   }
   data?: T | null
 }
+
+export type IGender = 'male' | 'female'
+export type IBloodGroup =
+  | 'A+'
+  | 'A-'
+  | 'B+'
+  | 'B-'
+  | 'AB+'
+  | 'AB-'
+  | 'O+'
+  | 'O-'

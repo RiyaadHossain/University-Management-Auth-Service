@@ -1,4 +1,5 @@
 import { Model, ObjectId } from 'mongoose'
+import { IBloodGroup, IGender } from '../../../interfaces/common'
 
 type Name = {
   fisrtName: string
@@ -26,14 +27,14 @@ type LocalGuardian = {
 export type IStudent = {
   id: string
   name: Name
-  gender: 'male' | 'female'
+  gender: IGender
   dateOfBirth: string
   email: string
   contactNo: string
   emergencyContactNo: string
   presentAddress: string
   permanentAddress: string
-  bloodGroup: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-'
+  bloodGroup: IBloodGroup
   guardian: Guardian
   localGuardian: LocalGuardian
   academicSemester: ObjectId

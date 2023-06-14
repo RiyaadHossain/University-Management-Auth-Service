@@ -6,12 +6,14 @@ import { AcademicSemesterRoute } from '../modules/academicSemester/academicSemes
 import { AcademicFacultyRoute } from '../modules/academicFaculty/academicFaculty.route'
 import { AcademicDepartmentRoute } from '../modules/academicDepartment/academicDepartment.route'
 import { DepartmentManagementRoute } from '../modules/departmentManagement/departmentManagement.route'
+import { AdminRoute } from '../modules/admin/admin.route'
 const router = express.Router()
 
 const moduleRoutes = [
   { path: '/users', route: UserRoute },
   { path: '/students', route: StudentRoute },
   { path: '/faculties', route: FacultyRoute },
+  { path: '/admins', route: AdminRoute },
   { path: '/academic-semesters', route: AcademicSemesterRoute },
   { path: '/academic-faculty', route: AcademicFacultyRoute },
   { path: '/academic-department', route: AcademicDepartmentRoute },
