@@ -3,7 +3,7 @@
   "builds": [
     {
       "src": "dist/server.js",
-      "use": "@vecel/node"
+      "use": "@now/node"
     }
   ],
   "routes": [
