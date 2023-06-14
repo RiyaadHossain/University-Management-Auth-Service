@@ -1,28 +1,28 @@
 import app from './app'
 import config from './config'
 import mongoose from 'mongoose'
-import { errorLogger, logger } from './shared/logger'
+// import { errorLogger, logger } from './shared/logger'
 
 // Uncaught Execption: Gracefully off the server
 process.on('uncaughtException', error => {
-  logger.error(error)
+  console.log(error)
   process.exit(1)
 })
 
 // Connect Database
 mongoose
   .connect(config.MONGODB_URL as string)
-  .then(() => logger.info('Database connceted successfully ✅'))
-  .catch(err => errorLogger.error(`Unable to connect MongoDB ❌ ${err}`))
+  .then(() => console.log('Database connceted successfully ✅'))
+  .catch(err => console.log(`Unable to connect MongoDB ❌ ${err}`))
 
 // Listen to Server
 const server = app.listen(config.PORT, () => {
-  logger.info(`Application is listening ✅`)
+  console.log(`Application is listening ✅`)
 })
 
 // Unhandled Rejection: Gracefully off the server
 process.on('unhandledRejection', error => {
-  errorLogger.error(`Unhandled Reject is closing the server ❌ ${error}`)
+  console.log(`Unhandled Reject is closing the server ❌ ${error}`)
 
   if (server) {
     server.close(() => {
@@ -35,6 +35,6 @@ process.on('unhandledRejection', error => {
 
 // SIGTERM
 process.on('SIGTERM', () => {
-  logger.info('Sigterm is triggered ⚒️')
+  console.log('Sigterm is triggered ⚒️')
   if (server) server.close()
 })
