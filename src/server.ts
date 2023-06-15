@@ -11,7 +11,7 @@ process.on('uncaughtException', error => {
 
 // Connect Database
 mongoose
-  .connect(config.MONGODB_URL as string)
+  .connect(config.MONGODB_URI as string)
   .then(() => console.log('Database connceted successfully ✅'))
   .catch(err => console.log(`Unable to connect MongoDB ❌ ${err}`))
 
