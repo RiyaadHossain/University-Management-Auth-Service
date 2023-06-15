@@ -6,20 +6,7 @@ import { pick } from '../../../shared/pick'
 import { paginationFields } from '../../../constants/pagination'
 import { adminSearchableFields } from './admin.constant'
 import { AdminService } from './admin.services'
-import { UserService } from '../user/user.services'
 import httpStatus from 'http-status-codes'
-import { IUser } from '../user/user.interface'
-
-const createAdmin: RequestHandler = catchAsync(async (req, res) => {
-  const { admin, ...userData } = req.body
-  const result = await UserService.createAdmin(admin, userData)
-  sendResponse<IUser>(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'Admin account created successfully!',
-    data: result,
-  })
-})
 
 const getAllAdmins: RequestHandler = catchAsync(async (req, res) => {
   const paginationOPtions = pick(req.query, paginationFields)
@@ -72,7 +59,6 @@ const deleteAdmin: RequestHandler = catchAsync(async (req, res) => {
 })
 
 export const AdminController = {
-  createAdmin,
   getAllAdmins,
   getAdmin,
   updateAdmin,

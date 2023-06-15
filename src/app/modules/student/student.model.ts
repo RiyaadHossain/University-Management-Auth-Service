@@ -1,6 +1,6 @@
 import { Schema, Types, model } from 'mongoose'
 import { IStudent, StudentModel } from './student.interface'
-import { bloodGroup, gender } from './student.constant'
+import { bloodGroup, gender } from '../../../constants/generalUserInfo'
 
 export const studentSchema = new Schema<IStudent>({
   id: {
