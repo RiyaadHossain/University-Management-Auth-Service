@@ -14,7 +14,7 @@ process.on('uncaughtException', error => {
 });
 // Connect Database
 mongoose_1.default
-    .connect(config_1.default.MONGODB_URL)
+    .connect(config_1.default.MONGODB_URI)
     .then(() => console.log('Database connceted successfully ✅'))
     .catch(err => console.log(`Unable to connect MongoDB ❌ ${err}`));
 // Listen to Server
