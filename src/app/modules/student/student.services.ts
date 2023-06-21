@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { SortOrder } from 'mongoose'
+import mongoose, { SortOrder } from 'mongoose'
 import { calculatePagination } from '../../../helper/paginationHelper'
 import { IPaginationType } from '../../../interfaces/pagination'
 import { IServiceReturnType } from '../../../interfaces/common'
@@ -7,6 +7,8 @@ import { IStudent, IStudentFiltersOptions } from './student.interface'
 import Student from './student.model'
 import { studentSearchableFields } from './student.constant'
 import User from '../user/user.model'
+import APIError from '../../../errors/APIErrors'
+import httpStatus from 'http-status-codes'
 
 const getAllStudents = async (
   paginationOptions: IPaginationType,
@@ -115,45 +117,36 @@ const updateStudent = async (
 }
 
 const deleteStudent = async (id: string): Promise<IStudent | null> => {
-  const data = await Student.findOneAndDelete({ id })
-  await User.findOneAndDelete({ id })
+  // Check if the student is exist
+  const isExist = await Student.findById(id)
 
-  return data
+  if (!isExist) {
+    throw new APIError(httpStatus.NOT_FOUND, 'Student not found !')
+  }
+
+  const session = await mongoose.startSession()
+
+  try {
+    session.startTransaction()
+
+    // 1. Delete Student
+    const student = await Student.findOneAndDelete({ id }, { session })
+    if (!student) {
+      throw new APIError(404, 'Failed to delete Student')
+    }
+
+    // 2. Delete User
+    await User.deleteOne({ id }, { session })
+    session.commitTransaction()
+
+    return student
+  } catch (error) {
+    session.abortTransaction()
+    throw error
+  } finally {
+    session.endSession()
+  }
 }
-
-// const deleteStudent = async (id: string): Promise<IStudent | null> => {
-//   let deletedStudent = null
-//   const session = await mongoose.startSession()
-
-//   try {
-//     session.startTransaction()
-
-//     // Delete User Doc
-//     const deletedUser = await User.findOneAndDelete({id}, { session })
-//     if (!deletedUser) {
-//       throw new Error(`Failed to delete user account`)
-//     }
-
-//     // Delete Student Doc
-//     const deletedData = await Student.findOneAndDelete({id}, {
-//       session,
-//     }).populate('academicSemester academicDepartment academicFaculty')
-//     deletedStudent = deletedData
-
-//     if (!deletedData) {
-//       throw new Error(`Failed to delete student account`)
-//     }
-
-//     await session.commitTransaction()
-//     await session.endSession()
-//   } catch (error) {
-//     await session.abortTransaction()
-//     await session.endSession()
-//     throw error
-//   }
-
-//   return deletedStudent
-// }
 
 export const StudentService = {
   getAllStudents,

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { SortOrder } from 'mongoose'
+import mongoose, { SortOrder } from 'mongoose'
 import { calculatePagination } from '../../../helper/paginationHelper'
 import { IPaginationType } from '../../../interfaces/pagination'
 import { IServiceReturnType } from '../../../interfaces/common'
@@ -7,6 +7,8 @@ import { IFaculty, IFacultyFiltersOptions } from './faculty.interface'
 import Faculty from './faculty.model'
 import { facultySearchableFields } from './faculty.constant'
 import User from '../user/user.model'
+import httpStatus from 'http-status-codes'
+import APIError from '../../../errors/APIErrors'
 
 const getAllFacultys = async (
   paginationOptions: IPaginationType,
@@ -95,10 +97,35 @@ const updateFaculty = async (
 }
 
 const deleteFaculty = async (id: string): Promise<IFaculty | null> => {
-  const data = await Faculty.findOneAndDelete({ id })
-  await User.findOneAndDelete({ id })
+  // check if the faculty is exist
+  const isExist = await Faculty.findById(id)
 
-  return data
+  if (!isExist) {
+    throw new APIError(httpStatus.NOT_FOUND, 'Faculty not found !')
+  }
+
+  const session = await mongoose.startSession()
+
+  try {
+    session.startTransaction()
+
+    // 1. Delete Faculty
+    const faculty = await Faculty.findOneAndDelete({ id }, { session })
+    if (!faculty) {
+      throw new APIError(404, 'Failed to delete Faculty')
+    }
+
+    // 2. Delete User
+    await User.deleteOne({ id }, { session })
+    session.commitTransaction()
+
+    return faculty
+  } catch (error) {
+    session.abortTransaction()
+    throw error
+  } finally {
+    session.endSession()
+  }
 }
 
 export const FacultyService = {

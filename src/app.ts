@@ -3,7 +3,6 @@ import httpStatus from 'http-status-codes'
 import { applicationRoutes } from './app/routes'
 import globalErrorHandler from './app/middlewares/globalErrorHandler'
 import express, { Application, NextFunction, Request, Response } from 'express'
-import { generateFacultyId } from './app/modules/user/user.utils'
 const app: Application = express()
 
 // Middlewares
@@ -31,11 +30,5 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   })
   next()
 })
-
-const testGenerateId = async () => {
-  return await generateFacultyId()
-}
-
-testGenerateId()
 
 export default app
