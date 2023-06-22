@@ -30,7 +30,7 @@ userSchema.pre('save', async function () {
 userSchema.statics.isUserExist = async function (id: string) {
   const isUserExist = await User.findOne(
     { id },
-    { id: 1, password: 1, needsPasswordChange: 1 }
+    { id: 1, password: 1, role: 1, needsPasswordChange: 1 }
   )
 
   return isUserExist

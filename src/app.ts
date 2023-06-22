@@ -3,10 +3,12 @@ import httpStatus from 'http-status-codes'
 import { applicationRoutes } from './app/routes'
 import globalErrorHandler from './app/middlewares/globalErrorHandler'
 import express, { Application, NextFunction, Request, Response } from 'express'
+import cookieParser from 'cookie-parser'
 const app: Application = express()
 
 // Middlewares
 app.use(cors())
+app.use(cookieParser())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
