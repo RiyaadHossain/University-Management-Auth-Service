@@ -14,7 +14,7 @@ const auth =
     }
 
     try {
-      // Token Verificaiton
+      // Access Token Verificaiton
       const verifiedUser = jwtHelpers.verifyToken(
         token,
         config.JWT_SECRET as Secret

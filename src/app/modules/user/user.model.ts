@@ -10,6 +10,7 @@ const userSchema = new Schema<IUser, UserModel>(
     role: { type: String, required: true },
     password: { type: String, required: true, select: 0 },
     needsPasswordChange: { type: Boolean, default: true },
+    passwordChangedAt: { type: Date },
     student: { type: Types.ObjectId, ref: 'Student' },
     faculty: { type: Types.ObjectId, ref: 'Faculty' },
     admin: { type: Types.ObjectId, ref: 'Admin' },
@@ -24,6 +25,10 @@ userSchema.pre('save', async function () {
     user.password,
     Number(config.BCRYPT_SALT_ROUNDS)
   )
+
+  if (!user.needsPasswordChange) {
+    user.passwordChangedAt = new Date()
+  }
 })
 
 // To check User Existence

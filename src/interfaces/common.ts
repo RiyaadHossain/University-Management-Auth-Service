@@ -29,3 +29,8 @@ export type IBloodGroup =
   | 'AB-'
   | 'O+'
   | 'O-'
+
+export type IChangePasswordData = {
+  oldPassword: string
+  newPassword: string
+}

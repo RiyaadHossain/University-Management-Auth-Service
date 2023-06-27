@@ -1,10 +1,11 @@
-import { Secret } from 'jsonwebtoken'
+import { JwtPayload, Secret } from 'jsonwebtoken'
 import config from '../../../config'
 import APIError from '../../../errors/APIErrors'
 import { jwtHelpers } from '../../../helper/jwtHelper'
 import User from '../user/user.model'
 import { IAuth } from './auth.interface'
 import httpStatus from 'http-status-codes'
+import { IChangePasswordData } from '../../../interfaces/common'
 
 const logIn = async (payload: IAuth) => {
   const { id: userId, password } = payload
@@ -42,13 +43,35 @@ const logIn = async (payload: IAuth) => {
   return { accessToken, refreshToken, needsPasswordChange }
 }
 
-const refreshToken = async (token: string) => {
-  let decoded = null
-  try {
-    decoded = jwtHelpers.verifyToken(token, config.JWT_REFRESH as Secret)
-  } catch (error) {
-    throw new APIError(httpStatus.FORBIDDEN, 'Invalid Refresh Token!')
+const changPassword = async (
+  user: JwtPayload | null,
+  payload: IChangePasswordData
+) => {
+  const { oldPassword, newPassword } = payload
+
+  // Check User Existence
+  const userExist = await User.findOne({ _id: user?.id })
+  if (!userExist) {
+    throw new APIError(httpStatus.BAD_REQUEST, "User doesn't exist!")
   }
+  // Check Password
+  const isPassMatched = await User.isPasswordMatched(
+    oldPassword,
+    userExist.password
+  )
+  if (!isPassMatched) {
+    throw new APIError(httpStatus.UNAUTHORIZED, 'Password is incorrect!')
+  }
+
+  // Update User Data
+  userExist.password = newPassword
+  userExist.needsPasswordChange = false
+  await userExist.save()
+}
+
+const refreshToken = async (token: string) => {
+  // Refresh Token Verificaiton
+  const decoded = jwtHelpers.verifyToken(token, config.JWT_REFRESH as Secret)
 
   const { id, role } = decoded
 
@@ -70,4 +93,5 @@ const refreshToken = async (token: string) => {
 export const AuthService = {
   logIn,
   refreshToken,
+  changPassword,
 }
