@@ -3,6 +3,7 @@ import { calculatePagination } from '../../../helper/paginationHelper'
 import { IPaginationType } from '../../../interfaces/pagination'
 import {
   IAcademicDepartment,
+  IAcademicDepartmentEvent,
   IAcademicDepartmentFiltersOptions,
 } from './academicDepartment.interface'
 import AcademicDepartment from './academicDepartment.model'
@@ -100,10 +101,40 @@ const deleteDepartment = async (
   return data
 }
 
+const createDepartmentEvent = async (payload: IAcademicDepartmentEvent) => {
+  const { title, id, academicFaculty } = payload
+  await AcademicDepartment.create({
+    title,
+    academicFaculty,
+    syncId: id,
+  })
+}
+
+const updateDepartmentEvent = async (payload: IAcademicDepartmentEvent) => {
+  const { title, id, academicFaculty } = payload
+  await AcademicDepartment.findOneAndUpdate(
+    { syncId: id },
+    {
+      title,
+      academicFaculty,
+    }
+  )
+}
+
+const deleteDepartmentEvent = async (payload: IAcademicDepartmentEvent) => {
+  const { id } = payload
+  await AcademicDepartment.deleteOne({
+    syncId: id,
+  })
+}
+
 export const AcademicDepartmentService = {
   createDepartment,
   getAllDepartments,
   getDepartment,
   updateDepartment,
   deleteDepartment,
+  createDepartmentEvent,
+  updateDepartmentEvent,
+  deleteDepartmentEvent,
 }

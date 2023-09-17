@@ -7,6 +7,7 @@ import {
 const academicFacultySchema = new Schema<IAcademicFaculty>(
   {
     title: { type: String, required: true, unique: true },
+    syncId: { type: String, required: true, unique: true },
   },
   { timestamps: true, toJSON: { virtuals: true } }
 )

@@ -3,6 +3,7 @@ import { calculatePagination } from '../../../helper/paginationHelper'
 import { IPaginationType } from '../../../interfaces/pagination'
 import {
   IAcademicFaculty,
+  IAcademicFacultyEvent,
   IAcademicFacultyFiltersOptions,
 } from './academicFaculty.interface'
 import AcademicFaculty from './academicFaculty.model'
@@ -93,10 +94,38 @@ const deleteFaculty = async (id: string): Promise<IAcademicFaculty | null> => {
   return data
 }
 
+const createFacultyEvent = async (payload: IAcademicFacultyEvent) => {
+  const { title, id } = payload
+  await AcademicFaculty.create({
+    title,
+    syncId: id,
+  })
+}
+
+const updateFacultyEvent = async (payload: IAcademicFacultyEvent) => {
+  const { title, id } = payload
+  await AcademicFaculty.findOneAndUpdate(
+    { syncId: id },
+    {
+      title,
+    }
+  )
+}
+
+const deleteFacultyEvent = async (payload: IAcademicFacultyEvent) => {
+  const { id } = payload
+  await AcademicFaculty.deleteOne({
+    syncId: id,
+  })
+}
+
 export const AcademicFacultyService = {
   createFaculty,
   getAllFaculties,
   getFaculty,
   updateFaculty,
   deleteFaculty,
+  createFacultyEvent,
+  updateFacultyEvent,
+  deleteFacultyEvent,
 }
