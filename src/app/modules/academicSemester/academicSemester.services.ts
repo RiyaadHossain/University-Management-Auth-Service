@@ -9,24 +9,19 @@ import {
   academicSemesterTitleCodeMap,
   academicSemesterSearchableFields,
 } from './academicSemester.constant'
-import {
-  IAcademicSemester,
-  IAcademicSemesterFiltersOptions,
-  ICreateAcademicSemesterEvent,
-} from './academicSemester.interface'
+import { IAcademicSemester, IAcademicSemesterFiltersOptions, ICreateAcademicSemesterEvent } from './academicSemester.interface'
 
-const createSemester = async (
-  payload: IAcademicSemester
-): Promise<IAcademicSemester> => {
-  // Semester code validation
-  if (academicSemesterTitleCodeMap[payload.title] !== payload.code) {
-    throw new APIError(httpStatus.BAD_REQUEST, 'Invalid Semester code!')
+const createSemester = async ( payload: IAcademicSemester
+  ): Promise<IAcademicSemester> => {
+    // Semester code validation
+    if (academicSemesterTitleCodeMap[payload.title] !== payload.code) {
+      throw new APIError(httpStatus.BAD_REQUEST, 'Invalid Semester code!')
+    }
+  
+    const createdSemeter = await AcademicSemester.create(payload)
+  
+    return createdSemeter
   }
-
-  const createdSemeter = await AcademicSemester.create(payload)
-
-  return createdSemeter
-}
 
 const getAllSemesters = async (
   paginationOptions: IPaginationType,
