@@ -1,0 +1,2 @@
+[Error] Unhandled Reject is closing the server ❌ MongoRuntimeError: Attempted illegal state transition from [TRANSACTION_ABORTED] to [TRANSACTION_COMMITTED] 2023-06-12T06:50:40.343Z
+[Error] Unhandled Reject is closing the server ❌ MongoRuntimeError: Attempted illegal state transition from [TRANSACTION_ABORTED] to [TRANSACTION_COMMITTED] 2023-06-12T06:52:17.615Z

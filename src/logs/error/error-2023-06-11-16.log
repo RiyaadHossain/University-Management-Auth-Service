@@ -1,0 +1,2 @@
+[Error] Unhandled Reject is closing the server ❌ StrictPopulateError: Cannot populate path `AcademicFaculty` because it is not in your schema. Set the `strictPopulate` option to false to override. 2023-06-11T10:12:05.488Z
+[Error] Unhandled Reject is closing the server ❌ MongoServerError: E11000 duplicate key error collection: University-Management.academicdepartments index: title_1 dup key: { title: "Engineering Adminstration" } 2023-06-11T10:13:42.827Z

@@ -1,0 +1,5 @@
+[Error] Unhandled Reject is closing the server ❌ Error: Can't use $operations with String. 2023-06-10T04:01:09.978Z
+[Error] Unhandled Reject is closing the server ❌ Error: Can't use $operations with String. 2023-06-10T04:02:18.033Z
+[Error] Unhandled Reject is closing the server ❌ Error: Can't use $operations with String. 2023-06-10T04:02:40.232Z
+[Error] Unhandled Reject is closing the server ❌ CastError: Cast to number failed for value "i" (type string) at path "year" for model "AcademicSemester" 2023-06-10T04:04:45.128Z
+[Error] Unhandled Reject is closing the server ❌ MongoServerError: $and/$or/$nor must be a nonempty array 2023-06-10T04:23:24.324Z
