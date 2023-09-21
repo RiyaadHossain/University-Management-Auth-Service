@@ -11,6 +11,8 @@ import handleValidationError from '../../errors/handleValidationError'
 import handleCastError from '../../errors/handleCastError'
 
 const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
+  console.log(error)
+
   let statusCode = 500
   let message = 'Something went wrong'
   let errorMessages: IGenericErrorMessage[] = []

@@ -50,7 +50,7 @@ const getAllDeptManagements = (paginationOptions, filtersOptions) => __awaiter(v
     if (Object.keys(filtersData).length) {
         andConditions.push({
             $and: Object.entries(filtersData).map(([field, value]) => ({
-                [field]: [value],
+                [field]: value,
             })),
         });
     }

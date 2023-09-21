@@ -17,9 +17,9 @@ const moduleRoutes = [
   { path: '/faculties', route: FacultyRoute },
   { path: '/admins', route: AdminRoute },
   { path: '/academic-semesters', route: AcademicSemesterRoute },
-  { path: '/academic-faculty', route: AcademicFacultyRoute },
-  { path: '/academic-department', route: AcademicDepartmentRoute },
-  { path: '/department-management', route: DepartmentManagementRoute },
+  { path: '/academic-faculties', route: AcademicFacultyRoute },
+  { path: '/academic-departments', route: AcademicDepartmentRoute },
+  { path: '/department-managements', route: DepartmentManagementRoute },
 ]
 
 moduleRoutes.forEach(route => router.use(route.path, route.route))

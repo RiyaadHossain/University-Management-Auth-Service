@@ -1,6 +1,9 @@
-export const academicDepartmentFilterableFields = ['searchTerm', 'title']
+export const academicDepartmentFilterableFields = [
+  'searchTerm',
+  'title',
+  'syncId',
+]
 export const academicDepartmentSearchableFields = ['title']
-
 
 export const EVENT_ACADEMIC_DEPARTMENT_CREATE = 'academic-department.create'
 export const EVENT_ACADEMIC_DEPARTMENT_UPDATE = 'academic-department.update'

@@ -25,6 +25,7 @@ type LocalGuardian = {
 }
 
 export type IStudent = {
+  student: import("mongoose").Types.ObjectId
   id: string
   name: Name
   gender: IGender

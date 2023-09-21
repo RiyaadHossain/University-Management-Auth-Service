@@ -9,6 +9,9 @@ import {
 import AcademicDepartment from './academicDepartment.model'
 import { academicDepartmentSearchableFields } from './academicDepartment.constant'
 import { IServiceReturnType } from '../../../interfaces/common'
+import { AcademicFacultyService } from '../academicFaculty/academicFaculty.services'
+import APIError from '../../../errors/APIErrors'
+import httpStatus from 'http-status-codes'
 
 const createDepartment = async (
   payload: IAcademicDepartment
@@ -47,11 +50,11 @@ const getAllDepartments = async (
   if (Object.keys(filtersData).length) {
     andConditions.push({
       $and: Object.entries(filtersData).map(([field, value]) => ({
-        [field]: [value],
+        [field]: value,
       })),
     })
   }
-
+  
   const whereCondition = Object.keys(andConditions).length
     ? { $and: andConditions }
     : {}
@@ -102,21 +105,46 @@ const deleteDepartment = async (
 }
 
 const createDepartmentEvent = async (payload: IAcademicDepartmentEvent) => {
-  const { title, id, academicFaculty } = payload
+  const { title, id, academicFacultyId } = payload
+
+  const academicFaculty = await AcademicFacultyService.getFacultyBySyncId(
+    academicFacultyId
+  )
+
+  if (!academicFaculty) {
+    throw new APIError(
+      httpStatus.BAD_REQUEST,
+      'Academic Faculty data is not exist'
+    )
+  }
+
   await AcademicDepartment.create({
     title,
-    academicFaculty,
+    academicFaculty: academicFaculty._id,
     syncId: id,
   })
+
 }
 
 const updateDepartmentEvent = async (payload: IAcademicDepartmentEvent) => {
-  const { title, id, academicFaculty } = payload
+  const { title, id, academicFacultyId } = payload
+
+  const academicFaculty = await AcademicFacultyService.getFacultyBySyncId(
+    academicFacultyId
+  )
+
+  if (!academicFaculty) {
+    throw new APIError(
+      httpStatus.BAD_REQUEST,
+      'Academic Faculty data is not exist'
+    )
+  }
+
   await AcademicDepartment.findOneAndUpdate(
     { syncId: id },
     {
       title,
-      academicFaculty,
+      academicFaculty: academicFaculty._id,
     }
   )
 }

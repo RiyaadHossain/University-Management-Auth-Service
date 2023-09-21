@@ -84,7 +84,9 @@ const createStudentZodSchema = z.object({
           required_error: 'Local guardian address is required',
         }),
       }),
-      profileImage: z.string().optional(),
+      profileImage: z.string({
+        required_error: 'Profile Image is required',
+      }),
     }),
   }),
 })
@@ -133,6 +135,9 @@ const createFacultyZodSchema = z.object({
       academicFaculty: z.string({
         required_error: 'Academic faculty is required',
       }),
+      // profileImage: z.string({
+      //   required_error: 'Profile Image is required',
+      // }),
     }),
   }),
 })
@@ -178,6 +183,9 @@ const createAdminZodSchema = z.object({
       managementDepartment: z.string({
         required_error: 'Academic department is required',
       }),
+      // profileImage: z.string({
+      //   required_error: 'Profile Image is required',
+      // }),
     }),
   }),
 })

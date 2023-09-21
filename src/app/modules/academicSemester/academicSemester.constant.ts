@@ -38,6 +38,7 @@ export const academicSemesterFilterableFields = [
   'title',
   'code',
   'year',
+  'syncId',
 ]
 
 export const academicSemesterSearchableFields = ['title', 'code', 'year']

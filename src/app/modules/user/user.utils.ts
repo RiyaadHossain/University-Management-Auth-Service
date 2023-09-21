@@ -17,7 +17,7 @@ const lastStudent = async (): Promise<string | null> => {
 export const generateStudentId = async (
   academicSemester: IAcademicSemester | null
 ) => {
-  const year = academicSemester?.year?.substring(2)
+  const year = academicSemester?.year.toString()?.substring(2)
   const code = academicSemester?.code
 
   const lastUserId = (await lastStudent()) || String(0).padStart(5, '0')

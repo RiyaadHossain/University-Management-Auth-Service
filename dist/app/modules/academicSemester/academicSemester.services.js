@@ -56,7 +56,7 @@ const getAllSemesters = (paginationOptions, filtersOptions) => __awaiter(void 0,
     if (Object.keys(filtersData).length) {
         andConditions.push({
             $and: Object.entries(filtersData).map(([field, value]) => ({
-                [field]: [value],
+                [field]: value,
             })),
         });
     }

@@ -1,10 +1,14 @@
 import { Model, ObjectId } from 'mongoose'
 
-export type IAcademicDepartment = { title: string; academicFaculty: ObjectId }
+export type IAcademicDepartment = {
+  title: string
+  academicFaculty: ObjectId
+  syncId: string
+}
 
 export type IAcademicDepartmentEvent = {
   title: string
-  academicFaculty: ObjectId
+  academicFacultyId: ObjectId
   id: string
 }
 

@@ -47,7 +47,7 @@ const getAllStudents = (paginationOptions, filtersOptions) => __awaiter(void 0, 
     if (Object.keys(filtersData).length) {
         andConditions.push({
             $and: Object.entries(filtersData).map(([field, value]) => ({
-                [field]: [value],
+                [field]: value,
             })),
         });
     }
@@ -78,9 +78,9 @@ const getStudent = (id) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const updateStudent = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, guardian, localGuardian } = payload, studentData = __rest(payload
-    /*  Handle Embeded Fields Dynamically: */
-    // 1. name
-    , ["name", "guardian", "localGuardian"]);
+        /*  Handle Embeded Fields Dynamically: */
+        // 1. name
+        , ["name", "guardian", "localGuardian"]);
     /*  Handle Embeded Fields Dynamically: */
     // 1. name
     if (name && Object.keys(name).length > 0) {

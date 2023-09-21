@@ -1,4 +1,4 @@
-import { SortOrder } from 'mongoose'
+import { ObjectId, SortOrder } from 'mongoose'
 import { calculatePagination } from '../../../helper/paginationHelper'
 import { IPaginationType } from '../../../interfaces/pagination'
 import {
@@ -45,7 +45,7 @@ const getAllFaculties = async (
   if (Object.keys(filtersData).length) {
     andConditions.push({
       $and: Object.entries(filtersData).map(([field, value]) => ({
-        [field]: [value],
+        [field]: value,
       })),
     })
   }
@@ -119,6 +119,11 @@ const deleteFacultyEvent = async (payload: IAcademicFacultyEvent) => {
   })
 }
 
+const getFacultyBySyncId = async (syncId: ObjectId) => {
+  const result = await AcademicFaculty.findOne({ syncId })
+  return result
+}
+
 export const AcademicFacultyService = {
   createFaculty,
   getAllFaculties,
@@ -128,4 +133,5 @@ export const AcademicFacultyService = {
   createFacultyEvent,
   updateFacultyEvent,
   deleteFacultyEvent,
+  getFacultyBySyncId,
 }

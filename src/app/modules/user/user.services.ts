@@ -17,6 +17,12 @@ import Faculty from '../faculty/faculty.model'
 import { ENUM_USER_ROLE } from '../../../enums/user'
 import Admin from '../admin/admin.model'
 import { IAdmin } from '../admin/admin.interface'
+import { RedisClient } from '../../../shared/redis'
+import {
+  EVENT_ADMIN_CREATE,
+  EVENT_FACULTY_CREATE,
+  EVENT_STUDENT_CREATE,
+} from './user.constant'
 
 const createStudent = async (
   student: IStudent,
@@ -26,7 +32,7 @@ const createStudent = async (
     student.academicSemester
   )
 
-  let userAllData = null
+  let userFinalData = null
 
   const session = await mongoose.startSession()
 
@@ -56,7 +62,7 @@ const createStudent = async (
 
     // Create User
     const newUser = await User.create([user], { session })
-    userAllData = newUser[0]
+    userFinalData = newUser[0]
 
     if (!newUser.length) {
       throw new APIError(
@@ -72,25 +78,29 @@ const createStudent = async (
     throw error
   }
 
-  if (userAllData) {
-    userAllData = await User.findById(userAllData._id).populate({
-      path: 'student',
-      populate: [
-        { path: 'academicSemester' },
-        { path: 'academicDepartment' },
-        { path: 'academicFaculty' },
-      ],
-    })
+  if (!userFinalData) {
+    throw new APIError(httpStatus.BAD_REQUEST, 'Failed to create student data')
   }
 
-  return userAllData
+  userFinalData = await User.findById(userFinalData._id).populate({
+    path: 'student',
+    populate: [
+      { path: 'academicSemester' },
+      { path: 'academicDepartment' },
+      { path: 'academicFaculty' },
+    ],
+  })
+
+  RedisClient.publish(EVENT_STUDENT_CREATE, JSON.stringify(userFinalData))
+
+  return userFinalData
 }
 
 const createFaculty = async (
   faculty: IFaculty,
   user: Partial<IUser>
 ): Promise<IUser | null> => {
-  let userAllData = null
+  let userFinalData = null
   const session = await mongoose.startSession()
   try {
     session.startTransaction()
@@ -116,7 +126,7 @@ const createFaculty = async (
 
     // Create User Doc
     const newUser = await User.create([user], { session })
-    userAllData = newUser[0]
+    userFinalData = newUser[0]
 
     if (!newUser.length)
       throw new APIError(
@@ -132,20 +142,25 @@ const createFaculty = async (
     throw error
   }
 
-  if (userAllData)
-    userAllData = await User.findById(userAllData._id).populate({
-      path: 'faculty',
-      populate: [{ path: 'academicFaculty' }, { path: 'academicDepartment' }],
-    })
+  if (!userFinalData) {
+    throw new APIError(httpStatus.BAD_REQUEST, 'Failed to create Faculty data')
+  }
 
-  return userAllData
+  userFinalData = await User.findById(userFinalData._id).populate({
+    path: 'faculty',
+    populate: [{ path: 'academicFaculty' }, { path: 'academicDepartment' }],
+  })
+
+  RedisClient.publish(EVENT_FACULTY_CREATE, JSON.stringify(userFinalData))
+
+  return userFinalData
 }
 
 const createAdmin = async (
   admin: IAdmin,
   user: Partial<IUser>
 ): Promise<IUser | null> => {
-  let userAllData = null
+  let userFinalData = null
   const session = await mongoose.startSession()
   try {
     session.startTransaction()
@@ -171,7 +186,7 @@ const createAdmin = async (
 
     // Create User Doc
     const newUser = await User.create([user], { session })
-    userAllData = newUser[0]
+    userFinalData = newUser[0]
 
     if (!newUser.length)
       throw new APIError(
@@ -187,13 +202,18 @@ const createAdmin = async (
     throw error
   }
 
-  if (userAllData)
-    userAllData = await User.findById(userAllData._id).populate({
-      path: 'admin',
-      populate: [{ path: 'managementDepartment' }],
-    })
+  if (!userFinalData) {
+    throw new APIError(httpStatus.BAD_REQUEST, 'Failed to create admin data')
+  }
 
-  return userAllData
+  userFinalData = await User.findById(userFinalData._id).populate({
+    path: 'admin',
+    populate: [{ path: 'managementDepartment' }],
+  })
+
+  RedisClient.publish(EVENT_ADMIN_CREATE, JSON.stringify(userFinalData))
+
+  return userFinalData
 }
 
 export const UserService = {

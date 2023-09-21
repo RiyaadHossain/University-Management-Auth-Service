@@ -47,7 +47,7 @@ const getAllFacultys = (paginationOptions, filtersOptions) => __awaiter(void 0, 
     if (Object.keys(filtersData).length) {
         andConditions.push({
             $and: Object.entries(filtersData).map(([field, value]) => ({
-                [field]: [value],
+                [field]: value,
             })),
         });
     }
@@ -78,8 +78,8 @@ const getFaculty = (id) => __awaiter(void 0, void 0, void 0, function* () {
 });
 const updateFaculty = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const { name } = payload, facultyData = __rest(payload
-    /*  Handle 'name' Embeded Fields Dynamically: */
-    , ["name"]);
+        /*  Handle 'name' Embeded Fields Dynamically: */
+        , ["name"]);
     /*  Handle 'name' Embeded Fields Dynamically: */
     if (name && Object.keys(name).length > 0) {
         Object.keys(name).forEach(key => {
