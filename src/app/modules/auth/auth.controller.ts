@@ -8,7 +8,7 @@ import config from '../../../config'
 const logIn: RequestHandler = catchAsync(async (req, res) => {
   const logInData = req.body
   const result = await AuthService.logIn(logInData)
-  const { refreshToken, ...response } = result
+  const { refreshToken } = result
 
   // Set Cookie
   const cookieOptions = {
@@ -22,7 +22,7 @@ const logIn: RequestHandler = catchAsync(async (req, res) => {
     statusCode: httpStatus.OK,
     success: true,
     message: 'User logged in Successfully',
-    data: response,
+    data: result,
   })
 })
 
@@ -41,7 +41,7 @@ const refreshToken: RequestHandler = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'User logged in Successfully',
+    message: 'Generated new access token Successfully',
     data: result,
   })
 })

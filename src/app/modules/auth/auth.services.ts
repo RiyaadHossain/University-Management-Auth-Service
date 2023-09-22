@@ -50,7 +50,7 @@ const changPassword = async (
   const { oldPassword, newPassword } = payload
 
   // Check User Existence
-  const userExist = await User.findOne({ _id: user?.id }).select('+password')
+  const userExist = await User.findOne({ id: user?.id }).select('+password')
   if (!userExist) {
     throw new APIError(httpStatus.BAD_REQUEST, "User doesn't exist!")
   }
@@ -59,6 +59,7 @@ const changPassword = async (
     oldPassword,
     userExist.password
   )
+  
   if (!isPassMatched) {
     throw new APIError(httpStatus.UNAUTHORIZED, 'Password is incorrect!')
   }
@@ -66,6 +67,8 @@ const changPassword = async (
   // Update User Data
   userExist.password = newPassword
   userExist.needsPasswordChange = false
+  userExist.passwordChangedAt = new Date()
+
   await userExist.save()
 }
 
