@@ -5,10 +5,15 @@ import { IPaginationType } from '../../../interfaces/pagination'
 import { IServiceReturnType } from '../../../interfaces/common'
 import { IFaculty, IFacultyFiltersOptions } from './faculty.interface'
 import Faculty from './faculty.model'
-import { facultySearchableFields } from './faculty.constant'
+import {
+  EVENT_FACULTY_DELETE,
+  EVENT_FACULTY_UPDATE,
+  facultySearchableFields,
+} from './faculty.constant'
 import User from '../user/user.model'
 import httpStatus from 'http-status-codes'
 import APIError from '../../../errors/APIErrors'
+import { RedisClient } from '../../../shared/redis'
 
 const getAllFacultys = async (
   paginationOptions: IPaginationType,
@@ -93,6 +98,10 @@ const updateFaculty = async (
     .populate('academicDepartment academicFaculty')
     .exec()
 
+  if (data) {
+    RedisClient.publish(EVENT_FACULTY_UPDATE, JSON.stringify(data))
+  }
+
   return data
 }
 
@@ -118,6 +127,11 @@ const deleteFaculty = async (id: string): Promise<IFaculty | null> => {
     // 2. Delete User
     await User.deleteOne({ id }, { session })
     session.commitTransaction()
+
+    console.log(faculty)
+    if (faculty) {
+      RedisClient.publish(EVENT_FACULTY_DELETE, JSON.stringify(faculty))
+    }
 
     return faculty
   } catch (error) {
