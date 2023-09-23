@@ -11,7 +11,7 @@ export const initAcademicDepartmentEvents = () => {
     EVENT_ACADEMIC_DEPARTMENT_CREATE,
     async (catched: string) => {
       const data = JSON.parse(catched)
-      console.log(data)
+
       await AcademicDepartmentService.createDepartmentEvent(data)
     }
   )

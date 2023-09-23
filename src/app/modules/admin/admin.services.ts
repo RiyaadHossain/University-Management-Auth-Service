@@ -96,7 +96,7 @@ const updateAdmin = async (
 
 const deleteAdmin = async (id: string): Promise<IAdmin | null> => {
   // Check if the admin is exist
-  const isExist = await Admin.findById(id)
+  const isExist = await Admin.findOne({ id })
 
   if (!isExist) {
     throw new APIError(httpStatus.NOT_FOUND, 'Admin not found !')
@@ -115,14 +115,14 @@ const deleteAdmin = async (id: string): Promise<IAdmin | null> => {
 
     // 2. Delete User
     await User.deleteOne({ id }, { session })
+
     session.commitTransaction()
+    session.endSession()
 
     return admin
   } catch (error) {
     session.abortTransaction()
     throw error
-  } finally {
-    session.endSession()
   }
 }
 

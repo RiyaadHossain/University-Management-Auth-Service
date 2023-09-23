@@ -120,7 +120,7 @@ const deleteFaculty = async (id: string): Promise<IFaculty | null> => {
 
     // 1. Delete Faculty
     const faculty = await Faculty.findOneAndDelete({ id }, { session })
-    console.log(faculty)
+
     if (!faculty) {
       throw new APIError(404, 'Failed to delete Faculty')
     }
