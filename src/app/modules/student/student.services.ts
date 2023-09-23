@@ -5,10 +5,15 @@ import { IPaginationType } from '../../../interfaces/pagination'
 import { IServiceReturnType } from '../../../interfaces/common'
 import { IStudent, IStudentFiltersOptions } from './student.interface'
 import Student from './student.model'
-import { studentSearchableFields } from './student.constant'
+import {
+  EVENT_STUDENT_DELETE,
+  EVENT_STUDENT_UPDATE,
+  studentSearchableFields,
+} from './student.constant'
 import User from '../user/user.model'
 import APIError from '../../../errors/APIErrors'
 import httpStatus from 'http-status-codes'
+import { RedisClient } from '../../../shared/redis'
 
 const getAllStudents = async (
   paginationOptions: IPaginationType,
@@ -113,12 +118,16 @@ const updateStudent = async (
     .populate('academicSemester academicDepartment academicFaculty')
     .exec()
 
+  if (data) {
+    RedisClient.publish(EVENT_STUDENT_UPDATE, JSON.stringify(data))
+  }
+
   return data
 }
 
 const deleteStudent = async (id: string): Promise<IStudent | null> => {
   // Check if the student is exist
-  const isExist = await Student.findById(id)
+  const isExist = await Student.findOne({ id })
 
   if (!isExist) {
     throw new APIError(httpStatus.NOT_FOUND, 'Student not found !')
@@ -137,14 +146,19 @@ const deleteStudent = async (id: string): Promise<IStudent | null> => {
 
     // 2. Delete User
     await User.deleteOne({ id }, { session })
+
+    // Commit the transaction if everything succeeded
     session.commitTransaction()
+    session.endSession()
+
+    if (student) {
+      RedisClient.publish(EVENT_STUDENT_DELETE, JSON.stringify(student))
+    }
 
     return student
   } catch (error) {
     session.abortTransaction()
     throw error
-  } finally {
-    session.endSession()
   }
 }
 

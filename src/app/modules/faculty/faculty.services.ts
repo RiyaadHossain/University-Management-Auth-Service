@@ -107,7 +107,7 @@ const updateFaculty = async (
 
 const deleteFaculty = async (id: string): Promise<IFaculty | null> => {
   // check if the faculty is exist
-  const isExist = await Faculty.findById(id)
+  const isExist = await Faculty.findOne({ id })
 
   if (!isExist) {
     throw new APIError(httpStatus.NOT_FOUND, 'Faculty not found !')
@@ -120,25 +120,27 @@ const deleteFaculty = async (id: string): Promise<IFaculty | null> => {
 
     // 1. Delete Faculty
     const faculty = await Faculty.findOneAndDelete({ id }, { session })
+    console.log(faculty)
     if (!faculty) {
       throw new APIError(404, 'Failed to delete Faculty')
     }
 
     // 2. Delete User
     await User.deleteOne({ id }, { session })
-    session.commitTransaction()
 
-    console.log(faculty)
     if (faculty) {
       RedisClient.publish(EVENT_FACULTY_DELETE, JSON.stringify(faculty))
     }
 
-    return faculty
+    // Commit the transaction if everything succeeded
+    session.commitTransaction();
+    session.endSession();
+
+    return isExist
   } catch (error) {
+    // Handle errors and abort the transaction
     session.abortTransaction()
     throw error
-  } finally {
-    session.endSession()
   }
 }
 

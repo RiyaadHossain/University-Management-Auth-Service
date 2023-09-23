@@ -14,3 +14,6 @@ export const studentFilterableFields = [
   'contactNo',
   'emergencyContactNo',
 ]
+
+export const EVENT_STUDENT_UPDATE = 'student.update'
+export const EVENT_STUDENT_DELETE = 'student.delete'
