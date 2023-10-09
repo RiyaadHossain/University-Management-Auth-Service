@@ -46,7 +46,7 @@ const getAllAdmins = async (
     ? { $and: andConditions }
     : {}
 
-  const facultiesData = await Admin.find(whereCondition)
+  const adminsData = await Admin.find(whereCondition)
     .populate('managementDepartment')
     .sort(sortCondition)
     .skip(skip)
@@ -61,7 +61,7 @@ const getAllAdmins = async (
       limit,
       totalDoc,
     },
-    data: facultiesData,
+    data: adminsData,
   }
 }
 
